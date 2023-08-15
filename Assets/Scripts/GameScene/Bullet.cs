@@ -41,7 +41,7 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log(other.gameObject.name); //衝突したオブジェクトの名前を出力
+        Debug.Log("星" + other.gameObject.name); //衝突したオブジェクトの名前を出力
 
         //if (other.gameObject.tag == "Tilemap_holl")
         //{
@@ -54,14 +54,16 @@ public class Bullet : MonoBehaviour
         //    //Destroy(this.gameObject);
         //    gameOverText.SetActive(true);
         //}
-
-        if (other.gameObject.CompareTag("Player") && !other.gameObject.GetComponent<PhotonView>().IsMine)
-        //衝突したオブジェクトにPlayerタグ付けがあり、なおかつそれが自分のプレイヤーでない場合
+        if (this.gameObject.GetComponent<PhotonView>().IsMine)
         {
-            Destroy(this.gameObject);
-            other.gameObject.GetComponent<PhotonView>().RPC("TakeDamage", RpcTarget.AllBuffered, 10f);
-            //RPCを介して、相手オブジェクトのメソッドを呼ぶ（10fというfloat値を渡す）
-            
+            if (other.gameObject.CompareTag("Player") && !other.gameObject.GetComponent<PhotonView>().IsMine)
+            //衝突したオブジェクトにPlayerタグ付けがあり、なおかつそれが自分のプレイヤーでない場合
+            {
+                Destroy(this.gameObject);
+                other.gameObject.GetComponent<PhotonView>().RPC("TakeDamage", RpcTarget.AllBuffered, 10f);
+                //RPCを介して、相手オブジェクトのメソッドを呼ぶ（10fというfloat値を渡す）
+
+            }
         }
     }
 
