@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class Bullet : MonoBehaviour
 {
@@ -36,4 +37,33 @@ public class Bullet : MonoBehaviour
         angle = input_angle;
         speed = input_speed;
     }
+
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        Debug.Log(other.gameObject.name); //衝突したオブジェクトの名前を出力
+
+        //if (other.gameObject.tag == "Tilemap_holl")
+        //{
+        //    //Destroy(this.gameObject);
+        //    gameOverText.SetActive(true);
+        //}
+
+        //if (other.gameObject.tag == "Enemy")
+        //{
+        //    //Destroy(this.gameObject);
+        //    gameOverText.SetActive(true);
+        //}
+
+        if (other.gameObject.CompareTag("Player") && !other.gameObject.GetComponent<PhotonView>().IsMine)
+        //衝突したオブジェクトにPlayerタグ付けがあり、なおかつそれが自分のプレイヤーでない場合
+        {
+            Destroy(this.gameObject);
+            other.gameObject.GetComponent<PhotonView>().RPC("TakeDamage", RpcTarget.AllBuffered, 10f);
+            //RPCを介して、相手オブジェクトのメソッドを呼ぶ（10fというfloat値を渡す）
+            
+        }
+    }
+
+
 }
