@@ -11,20 +11,25 @@ public class MovementController : MonoBehaviour
 
     private Vector2 velocity = Vector2.zero; //初期値ゼロ
 
+    private VariableJoystick variableJoystick;
+
     // ゲームのスタート時の処理
     void Start()
     {
         // Rigidbody2D コンポーネントを取得して変数 rb に格納
         rb = GetComponent<Rigidbody2D>();
+
+        variableJoystick = GameObject.Find("Variable Joystick").GetComponent<VariableJoystick>();
+
     }
 
     // ゲーム実行中の繰り返し処理
     void Update()
     {
         // 右・左のデジタル入力値を x に渡す
-        float x = Input.GetAxisRaw("Horizontal");
+        float x = Input.GetAxisRaw("Horizontal")+ variableJoystick.Horizontal;
         // 上・下のデジタル入力値 y に渡す
-        float y = Input.GetAxisRaw("Vertical");
+        float y = Input.GetAxisRaw("Vertical")+ variableJoystick.Vertical;
         // 移動する向きを求める
         // x と y の入力値を正規化して direction に渡す
         Vector2 direction = new Vector2(x, y).normalized;
