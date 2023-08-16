@@ -35,7 +35,7 @@ public class Shoot : MonoBehaviour
         timeCount += Time.deltaTime;
 
         // 0.1秒を超えているか
-        if (timeCount > 0.1f)
+        if (timeCount > 0.2f)
         {
             timeCount = 0; // 再発射のために時間をリセット
 
@@ -57,23 +57,23 @@ public class Shoot : MonoBehaviour
             {
                 case 1:
                     //4way cross
-                    InstBullet(0, transform.position);
-                    InstBullet(90, transform.position);
-                    InstBullet(180, transform.position);
-                    InstBullet(270, transform.position);
+                    InstBullet(0, transform.position,3);
+                    InstBullet(90, transform.position,3);
+                    InstBullet(180, transform.position,3);
+                    InstBullet(270, transform.position,3);
                     break;
 
                 case 2:
                     //3way horizontal
-                    InstBullet(270, transform.position);
-                    InstBullet(270, transform.position + new Vector3(1,0,0));
-                    InstBullet(270, transform.position + new Vector3(-1, 0, 0));
+                    InstBullet(270, transform.position,3);
+                    InstBullet(270, transform.position + new Vector3(1,0,0),3);
+                    InstBullet(270, transform.position + new Vector3(-1, 0, 0), 3);
                     break;
 
                 case 3:
                     //1way uzumaki
                     shotAngle += 20;
-                    InstBullet(shotAngle, transform.position);
+                    InstBullet(shotAngle, transform.position, 6);
                     break;
 
             }
@@ -88,7 +88,7 @@ public class Shoot : MonoBehaviour
 
     }
 
-    private void InstBullet(float shotAngle, Vector3 offsetPos )
+    private void InstBullet(float shotAngle, Vector3 offsetPos, float shotSpeed )
     {
         if (this.gameObject.GetComponent<PhotonView>().IsMine)
         {
@@ -96,7 +96,7 @@ public class Shoot : MonoBehaviour
             // 生成したGameObjectに設定されている、Bulletスクリプトを取得する
             Bullet bulletScript = createObject.GetComponent<Bullet>();
             // BulletスクリプトのInitを呼び出す
-            bulletScript.Init(shotAngle, 6);
+            bulletScript.Init(shotAngle, shotSpeed);
         }
     }
 
