@@ -10,26 +10,26 @@ public class Shoot : MonoBehaviour
     float shotAngle = 0; // 発射角度
     [SerializeField] GameObject shotBullet; // 発射する弾
 
+    public int shotType = 0;
+
+
+
     // Update is called once per frame
     void Update()
     {
-        //if (Input.GetMouseButtonDown(0)) //左クリックした場合
-        //{
-        //    RaycastHit _hit; //Rayが衝突した情報を宣言
-        //    Ray ray = fpsCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f)); //カメラから画面中心に向けて飛ばすRayを定義
 
-        //    if (Physics.Raycast(ray, out _hit, 100)) //Rayが何かオブジェクトに衝突した場合
-        //    {
-        //        Debug.Log(_hit.collider.gameObject.name); //衝突したオブジェクトの名前を出力
-
-        //        if (_hit.collider.gameObject.CompareTag("Player") && !_hit.collider.gameObject.GetComponent<PhotonView>().IsMine)
-        //        //衝突したオブジェクトにPlayerタグ付けがあり、なおかつそれが自分のプレイヤーでない場合
-        //        {
-        //            //_hit.collider.gameObject.GetComponent<PhotonView>().RPC("TakeDamage", RpcTarget.AllBuffered, 10f); 
-        //            //RPCを介して、相手オブジェクトのメソッドを呼ぶ（10fというfloat値を渡す）
-        //        }
-        //    }
-        //}
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            shotType = 1;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            shotType = 2;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            shotType = 3;
+        }
 
         // 前フレームからの時間の差を加算
         timeCount += Time.deltaTime;
@@ -38,9 +38,6 @@ public class Shoot : MonoBehaviour
         if (timeCount > 0.1f)
         {
             timeCount = 0; // 再発射のために時間をリセット
-
-            //shotAngle += 20;
-            //shotAngle = 0;
 
             // GameObjectを新たに生成する
             // 第一引数：生成するGameObject
@@ -56,22 +53,32 @@ public class Shoot : MonoBehaviour
             //    bulletScript.Init(shotAngle, 3);
             //}
 
-            if(Time.time%10 >= 5)
+            switch(shotType)
             {
-                //4way cross
-                InstBullet(0, transform.position);
-                InstBullet(90, transform.position);
-                InstBullet(180, transform.position);
-                InstBullet(270, transform.position);
-            }
-            else
-            {
-            //3way horizontal
-            InstBullet(270, transform.position);
-            InstBullet(270, transform.position + new Vector3(1,0,0));
-            InstBullet(270, transform.position + new Vector3(-1, 0, 0));
+                case 1:
+                    //4way cross
+                    InstBullet(0, transform.position);
+                    InstBullet(90, transform.position);
+                    InstBullet(180, transform.position);
+                    InstBullet(270, transform.position);
+                    break;
+
+                case 2:
+                    //3way horizontal
+                    InstBullet(270, transform.position);
+                    InstBullet(270, transform.position + new Vector3(1,0,0));
+                    InstBullet(270, transform.position + new Vector3(-1, 0, 0));
+                    break;
+
+                case 3:
+                    //1way uzumaki
+                    shotAngle += 20;
+                    InstBullet(shotAngle, transform.position);
+                    break;
 
             }
+
+
 
 
 
@@ -81,7 +88,7 @@ public class Shoot : MonoBehaviour
 
     }
 
-    private void InstBullet(int shotAngle, Vector3 offsetPos )
+    private void InstBullet(float shotAngle, Vector3 offsetPos )
     {
         if (this.gameObject.GetComponent<PhotonView>().IsMine)
         {
