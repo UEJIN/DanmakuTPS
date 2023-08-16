@@ -39,25 +39,59 @@ public class Shoot : MonoBehaviour
         {
             timeCount = 0; // 再発射のために時間をリセット
 
-            shotAngle += 20;
+            //shotAngle += 20;
+            //shotAngle = 0;
 
             // GameObjectを新たに生成する
             // 第一引数：生成するGameObject
             // 第二引数：生成する座標
             // 第三引数：生成する角度
             // 戻り値：生成したGameObject
-            if (this.gameObject.GetComponent<PhotonView>().IsMine)
+            //if (this.gameObject.GetComponent<PhotonView>().IsMine)
+            //{
+            //    GameObject createObject = PhotonNetwork.Instantiate("Bullet", transform.position, Quaternion.identity);
+            //    // 生成したGameObjectに設定されている、Bulletスクリプトを取得する
+            //    Bullet bulletScript = createObject.GetComponent<Bullet>();
+            //    // BulletスクリプトのInitを呼び出す
+            //    bulletScript.Init(shotAngle, 3);
+            //}
+
+            if(Time.time%10 >= 5)
             {
-                GameObject createObject = PhotonNetwork.Instantiate("Bullet", transform.position, Quaternion.identity);
-                // 生成したGameObjectに設定されている、Bulletスクリプトを取得する
-                Bullet bulletScript = createObject.GetComponent<Bullet>();
-                // BulletスクリプトのInitを呼び出す
-                bulletScript.Init(shotAngle, 3);
+                //4way cross
+                InstBullet(0, transform.position);
+                InstBullet(90, transform.position);
+                InstBullet(180, transform.position);
+                InstBullet(270, transform.position);
             }
+            else
+            {
+            //3way horizontal
+            InstBullet(270, transform.position);
+            InstBullet(270, transform.position + new Vector3(1,0,0));
+            InstBullet(270, transform.position + new Vector3(-1, 0, 0));
+
+            }
+
+
 
 
         }
 
 
     }
+
+    private void InstBullet(int shotAngle, Vector3 offsetPos )
+    {
+        if (this.gameObject.GetComponent<PhotonView>().IsMine)
+        {
+            GameObject createObject = PhotonNetwork.Instantiate("Bullet", offsetPos, Quaternion.identity);
+            // 生成したGameObjectに設定されている、Bulletスクリプトを取得する
+            Bullet bulletScript = createObject.GetComponent<Bullet>();
+            // BulletスクリプトのInitを呼び出す
+            bulletScript.Init(shotAngle, 6);
+        }
+    }
+
+
 }
