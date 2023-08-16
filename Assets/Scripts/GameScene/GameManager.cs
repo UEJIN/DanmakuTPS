@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviourPunCallbacks //Photon view‚âPun‚ğg—p‚·‚
         {
             if (playerPrefab != null)
             {
-                int randomPoint = Random.Range(-2, 2);
+                int randomPoint = Random.Range(-20, 20);
                 PhotonNetwork.Instantiate(playerPrefab.name, new Vector2(randomPoint,randomPoint), Quaternion.identity); //Photon‚ğ‰î‚µ‚½¶¬
             }
         }
