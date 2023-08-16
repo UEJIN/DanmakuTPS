@@ -41,7 +41,7 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("衝突" + other.gameObject.name); //衝突したオブジェクトの名前を出力
+        //Debug.Log("衝突" + other.gameObject.name); //衝突したオブジェクトの名前を出力
 
         //if (other.gameObject.tag == "Tilemap_holl")
         //{

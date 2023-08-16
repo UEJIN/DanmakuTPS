@@ -14,6 +14,8 @@ public class TakingDamage : MonoBehaviourPunCallbacks
 
     private float hp;
     public float startHp = 100;
+    public bool isInDamageZone = false;
+    float timeCount = 0; // 経過時間
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +23,24 @@ public class TakingDamage : MonoBehaviourPunCallbacks
         hp = startHp;
         hpBar.fillAmount = hp / startHp;
     }
+    public void Update()
+    {
+        if(isInDamageZone)
+        {
+            //Debug.Log("Time.time % 10 = " + Time.time % 10);
+            // 前フレームからの時間の差を加算
+            timeCount += Time.deltaTime;
+
+            // 0.1秒を超えているか
+            if (timeCount > 1f)
+            {
+                timeCount = 0;
+                Debug.Log("重病経過");
+                this.gameObject.GetComponent<PhotonView>().RPC("TakeDamage", RpcTarget.AllBuffered, 5f);
+            }
+        }
+    }
+
 
     [PunRPC]
     public void TakeDamage(float _damage, PhotonMessageInfo info) //Photonのもつinfoも渡す
