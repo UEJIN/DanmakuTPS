@@ -756,6 +756,7 @@ MonoBehaviour:
   killText: {fileID: 4920157856899488237}
   respawnText: {fileID: 8363151074570447308}
   startHp: 100
+  isInDamageZone: 0
 --- !u!114 &1516306647283544042
 MonoBehaviour:
   m_ObjectHideFlags: 0

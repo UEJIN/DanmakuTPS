@@ -20,8 +20,10 @@ public class SafeZoneManager : MonoBehaviour
     void Update()
     {
 
-        
-        transform.localScale -= new Vector3(0.001f,0.001f,0) ;
+        if (PhotonNetwork.IsMasterClient)
+        {
+            transform.localScale -= new Vector3(0.001f, 0.001f, 0);
+        }
 
     }
 
