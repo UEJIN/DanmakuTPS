@@ -97,6 +97,8 @@ public class Shoot : MonoBehaviour
             Bullet bulletScript = createObject.GetComponent<Bullet>();
             // BulletスクリプトのInitを呼び出す
             bulletScript.Init(shotAngle, shotSpeed);
+
+            createObject.GetComponent<SpriteRenderer>().color = new Color(107, 162, 255);
         }
     }
 
