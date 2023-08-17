@@ -54,17 +54,32 @@ public class Bullet : MonoBehaviour
         //    //Destroy(this.gameObject);
         //    gameOverText.SetActive(true);
         //}
-        if (this.gameObject.GetComponent<PhotonView>().IsMine)
+
+
+        //if (this.gameObject.GetComponent<PhotonView>().IsMine)
+        //{
+        //    if (other.gameObject.CompareTag("Player") && !other.gameObject.GetComponent<PhotonView>().IsMine)
+        //    //衝突したオブジェクトにPlayerタグ付けがあり、なおかつそれが自分のプレイヤーでない場合
+        //    {
+        //        Destroy(this.gameObject);
+        //        other.gameObject.GetComponent<PhotonView>().RPC("TakeDamage", RpcTarget.AllBuffered, 10f);
+        //        //RPCを介して、相手オブジェクトのメソッドを呼ぶ（10fというfloat値を渡す）
+
+        //    }
+        //}
+        if (!this.gameObject.GetComponent<PhotonView>().IsMine)　//相手の球が
         {
-            if (other.gameObject.CompareTag("Player") && !other.gameObject.GetComponent<PhotonView>().IsMine)
-            //衝突したオブジェクトにPlayerタグ付けがあり、なおかつそれが自分のプレイヤーでない場合
+            if (other.gameObject.CompareTag("Player") && other.gameObject.GetComponent<PhotonView>().IsMine)
+            //衝突したオブジェクトにPlayerタグ付けがあり、なおかつそれが自分のプレイヤーの場合
             {
                 Destroy(this.gameObject);
                 other.gameObject.GetComponent<PhotonView>().RPC("TakeDamage", RpcTarget.AllBuffered, 10f);
-                //RPCを介して、相手オブジェクトのメソッドを呼ぶ（10fというfloat値を渡す）
+                //RPCを介して、自分のオブジェクトのメソッドを呼ぶ（10fというfloat値を渡す）
 
             }
         }
+
+
     }
 
 
