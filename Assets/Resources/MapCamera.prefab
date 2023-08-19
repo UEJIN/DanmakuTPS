@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6462625196749777100}
   - component: {fileID: 6462625196749777101}
-  - component: {fileID: 6462625196749777090}
   m_Layer: 0
   m_Name: MapCamera
   m_TagString: Untagged
@@ -64,7 +63,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 72
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: e7a547bd7d0d20042b7f332d4a1075de, type: 2}
   m_TargetDisplay: 0
@@ -76,11 +75,3 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &6462625196749777090
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6462625196749777091}
-  m_Enabled: 1
