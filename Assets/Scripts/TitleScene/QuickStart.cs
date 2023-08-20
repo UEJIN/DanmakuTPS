@@ -23,7 +23,7 @@ public class QuickStart : MonoBehaviourPunCallbacks
     // Update is called once per frame
     void Update()
     {
-        if (quickStartButton.IsDown() == true)
+        if (quickStartButton.IsUp() == true)
         {
             ConnectToPhotonServer();
         }

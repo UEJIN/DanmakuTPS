@@ -15,6 +15,7 @@ public class ButtonState : MonoBehaviour
         if (this.pressed == false)
         {
             this.down = true;
+            Debug.Log("ボタンダウン" + this.gameObject.name);
         }
         this.pressed = true;
     }
@@ -25,6 +26,17 @@ public class ButtonState : MonoBehaviour
         if (this.pressed == true)
         {
             this.up = true;
+            Debug.Log("ボタンアップ" + this.gameObject.name);
+        }
+        this.pressed = false;
+    }
+
+    public void OnPointerExit()
+    {
+        if (this.pressed == true)
+        {
+            this.down = false;
+            Debug.Log("ボタンexit" + this.gameObject.name);
         }
         this.pressed = false;
     }
