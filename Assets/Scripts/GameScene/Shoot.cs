@@ -3,16 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class Shoot : MonoBehaviour
+public class Shoot : MonoBehaviourPunCallbacks
 {
     [SerializeField] Camera fpsCamera;
     float timeCount = 0; // 経過時間
     float shotAngle = 0; // 発射角度
     [SerializeField] GameObject shotBullet; // 発射する弾
+    AudioSource shootSound; //AudioSourceを宣言
 
     public int shotType = 0;
 
-
+    void Start()
+    {
+        shootSound = GameObject.Find("ShotSound").GetComponent<AudioSource>(); //シーンにあるオブジェクトを探し、コンポーネントを取得
+        shotType = 3;
+    }
 
     // Update is called once per frame
     void Update()
@@ -97,10 +102,18 @@ public class Shoot : MonoBehaviour
             Bullet bulletScript = createObject.GetComponent<Bullet>();
             // BulletスクリプトのInitを呼び出す
             bulletScript.Init(shotAngle, shotSpeed);
-
+            //自分の攻撃の色を変える
             createObject.GetComponent<SpriteRenderer>().color = new Color(107, 162, 255);
+
+            photonView.RPC("ShootEffect", RpcTarget.AllBuffered); //全プレイヤーに反映させるため、RPCメソッドに渡す
+
         }
     }
 
+    [PunRPC] //RPCメソッド
+    public void ShootEffect()
+    {
+        shootSound.Play(); //銃声を再生
+    }
 
 }

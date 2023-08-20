@@ -16,12 +16,16 @@ public class TakingDamage : MonoBehaviourPunCallbacks
     public float startHp = 100;
     public bool isInDamageZone = false;
     float timeCount = 0; // 経過時間
+    AudioSource dieSound; //AudioSourceを宣言
+    AudioSource damageSound;
 
     // Start is called before the first frame update
     void Start()
     {
         hp = startHp;
         hpBar.fillAmount = hp / startHp;
+        dieSound = GameObject.Find("KillSound").GetComponent<AudioSource>(); //シーンにあるオブジェクトを探し、コンポーネントを取得
+        damageSound = GameObject.Find("DamageSound").GetComponent<AudioSource>();
     }
     public void Update()
     {
@@ -35,7 +39,7 @@ public class TakingDamage : MonoBehaviourPunCallbacks
             if (timeCount > 1f)
             {
                 timeCount = 0;
-                Debug.Log("重病経過");
+                //Debug.Log("重病経過");
                 this.gameObject.GetComponent<PhotonView>().RPC("TakeDamage", RpcTarget.AllBuffered, 5f);
             }
         }
@@ -45,17 +49,22 @@ public class TakingDamage : MonoBehaviourPunCallbacks
     [PunRPC]
     public void TakeDamage(float _damage, PhotonMessageInfo info) //Photonのもつinfoも渡す
     {
-        hp -= _damage;
-        hpBar.fillAmount = hp / startHp;
-
-        //if (hp & lt;= 0f)
-        if (hp <= 0f)
+        if (hp > 0f)
         {
-            deadText.SetActive(true);
-            Die();
-            if (photonView.IsMine)
+            hp -= _damage;
+            hpBar.fillAmount = hp / startHp;
+            damageSound.Play();
+
+
+            if (hp <= 0f)
             {
-                killText.GetComponent<TextMeshProUGUI>().text = "You were killed by " + info.Sender.NickName; //自分の画面にやられたことを表示
+                deadText.SetActive(true);
+                Die();
+                dieSound.Play(); //死亡のお知らせ音を再生
+                if (photonView.IsMine)
+                {
+                    killText.GetComponent<TextMeshProUGUI>().text = "You were killed by " + info.Sender.NickName; //自分の画面にやられたことを表示
+                }
             }
         }
     }
