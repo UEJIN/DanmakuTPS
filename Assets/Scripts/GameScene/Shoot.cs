@@ -11,13 +11,17 @@ public class Shoot : MonoBehaviourPunCallbacks
     [SerializeField] GameObject shotBullet; // 発射する弾
     AudioSource shootSound; //AudioSourceを宣言
 
-    public int shotType = 0;
+    //public int shotType = 0;
 
-    void Start()
+
+    void Awake()
     {
         shootSound = GameObject.Find("ShotSound").GetComponent<AudioSource>(); //シーンにあるオブジェクトを探し、コンポーネントを取得
-        shotType = 3;
+        //shotType = 3;
     }
+
+    //void Start()
+    //{}
 
     // Update is called once per frame
     void Update()
@@ -25,15 +29,15 @@ public class Shoot : MonoBehaviourPunCallbacks
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            shotType = 1;
+            transform.GetComponent<PlayerStatus>().shotLv_circle += 1;
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            shotType = 2;
+            transform.GetComponent<PlayerStatus>().shotLv_voltex += 1;
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            shotType = 3;
+            transform.GetComponent<PlayerStatus>().shotLv_random += 1;
         }
 
         // 前フレームからの時間の差を加算
@@ -58,32 +62,181 @@ public class Shoot : MonoBehaviourPunCallbacks
             //    bulletScript.Init(shotAngle, 3);
             //}
 
-            switch(shotType)
+
+            //Debug.Log("shotLv_voltex=" + transform.GetComponent<PlayerStatus>().shotLv_voltex);
+            //Debug.Log("shotLv_circle=" + transform.GetComponent<PlayerStatus>().shotLv_circle);
+            //Debug.Log("shotLv_random=" + transform.GetComponent<PlayerStatus>().shotLv_random);
+
+            //switch (shotType)
+            //{
+            //    case 1:
+            //        //4way cross
+            //        InstBullet(0, transform.position,3);
+            //        InstBullet(90, transform.position,3);
+            //        InstBullet(180, transform.position,3);
+            //        InstBullet(270, transform.position,3);
+            //        break;
+
+            //    case 2:
+            //        //3way horizontal
+            //        InstBullet(270, transform.position,3);
+            //        InstBullet(270, transform.position + new Vector3(1,0,0),3);
+            //        InstBullet(270, transform.position + new Vector3(-1, 0, 0), 3);
+            //        break;
+
+            //    case 3:
+            //        //1way uzumaki
+            //        shotAngle += 20;
+            //        InstBullet(shotAngle, transform.position, 6);
+            //        break;
+
+            //}
+            if (transform.GetComponent<PlayerStatus>().shotLv_circle > 0)
             {
-                case 1:
-                    //4way cross
-                    InstBullet(0, transform.position,3);
-                    InstBullet(90, transform.position,3);
-                    InstBullet(180, transform.position,3);
-                    InstBullet(270, transform.position,3);
-                    break;
 
-                case 2:
-                    //3way horizontal
-                    InstBullet(270, transform.position,3);
-                    InstBullet(270, transform.position + new Vector3(1,0,0),3);
-                    InstBullet(270, transform.position + new Vector3(-1, 0, 0), 3);
-                    break;
+                switch (transform.GetComponent<PlayerStatus>().shotLv_circle)
+                {
+                    case 1:
+                        //4way cross
+                        InstBullet(0, transform.position, 3);
+                        InstBullet(90, transform.position, 3);
+                        InstBullet(180, transform.position, 3);
+                        InstBullet(270, transform.position, 3);
+                        break;
 
-                case 3:
-                    //1way uzumaki
-                    shotAngle += 20;
-                    InstBullet(shotAngle, transform.position, 6);
-                    break;
+                    case 2:
+                        //8way cross
+                        InstBullet(0, transform.position, 3);
+                        InstBullet(90, transform.position, 3);
+                        InstBullet(180, transform.position, 3);
+                        InstBullet(270, transform.position, 3);
+                        InstBullet(45, transform.position, 3);
+                        InstBullet(135, transform.position, 3);
+                        InstBullet(225, transform.position, 3);
+                        InstBullet(315, transform.position, 3);
+                        break;
 
+                    case 3:
+                        InstBullet(0, transform.position, 3);
+                        InstBullet(90, transform.position, 3);
+                        InstBullet(180, transform.position, 3);
+                        InstBullet(270, transform.position, 3);
+                        InstBullet(45, transform.position, 3);
+                        InstBullet(135, transform.position, 3);
+                        InstBullet(225, transform.position, 3);
+                        InstBullet(315, transform.position, 3);
+                        InstBullet(67.5f, transform.position, 3);
+                        InstBullet(157.5f, transform.position, 3);
+                        InstBullet(247.5f, transform.position, 3);
+                        InstBullet(337.5f, transform.position, 3);
+                        break;
+
+                    case 4:
+                        InstBullet(0, transform.position, 3);
+                        InstBullet(90, transform.position, 3);
+                        InstBullet(180, transform.position, 3);
+                        InstBullet(270, transform.position, 3);
+                        InstBullet(45, transform.position, 3);
+                        InstBullet(135, transform.position, 3);
+                        InstBullet(225, transform.position, 3);
+                        InstBullet(315, transform.position, 3);
+                        InstBullet(67.5f, transform.position, 3);
+                        InstBullet(157.5f, transform.position, 3);
+                        InstBullet(247.5f, transform.position, 3);
+                        InstBullet(337.5f, transform.position, 3);
+                        InstBullet(22.5f, transform.position, 3);
+                        InstBullet(112.5f, transform.position, 3);
+                        InstBullet(202.5f, transform.position, 3);
+                        InstBullet(292.5f, transform.position, 3);
+                        //8way cross
+                        //InstBullet(0, transform.position, 5);
+                        //InstBullet(90, transform.position, 5);
+                        //InstBullet(180, transform.position, 5);
+                        //InstBullet(270, transform.position, 5);
+                        //InstBullet(45, transform.position, 5);
+                        //InstBullet(135, transform.position, 5);
+                        //InstBullet(225, transform.position, 5);
+                        //InstBullet(315, transform.position, 5);
+                        break;
+
+                }
             }
 
+            if (transform.GetComponent<PlayerStatus>().shotLv_voltex > 0)
+            {
 
+                switch (transform.GetComponent<PlayerStatus>().shotLv_voltex)
+                {
+                    case 1:
+                        //1way uzumaki
+                        shotAngle += 20;
+                        InstBullet(shotAngle, transform.position, 6);
+                        break;
+
+                    case 2:
+                        //1way uzumaki
+                        shotAngle += 20;
+                        InstBullet(shotAngle, transform.position, 6);
+                        InstBullet(shotAngle + 180, transform.position, 6);
+                        break;
+
+                    case 3:
+                        //1way uzumaki
+                        shotAngle += 20;
+                        InstBullet(shotAngle, transform.position, 6);
+                        InstBullet(shotAngle + 120, transform.position, 6);
+                        InstBullet(shotAngle + 240, transform.position, 6);
+                        break;
+
+                    case 4:
+                        //1way uzumaki
+                        shotAngle += 20;
+                        InstBullet(shotAngle, transform.position, 6);
+                        InstBullet(shotAngle + 90, transform.position, 6);
+                        InstBullet(shotAngle + 180, transform.position, 6);
+                        InstBullet(shotAngle + 270, transform.position, 6);
+                        break;
+
+                }
+            }
+
+            if (transform.GetComponent<PlayerStatus>().shotLv_random > 0)
+            {
+
+                switch (transform.GetComponent<PlayerStatus>().shotLv_random)
+                {
+                    case 1:
+                        //random
+
+                        InstBullet(Random.Range(0, 360), transform.position, 8);
+                        InstBullet(Random.Range(0, 360), transform.position, 8);
+
+                        break;
+
+                    case 2:
+                        InstBullet(Random.Range(0, 360), transform.position, 8);
+                        InstBullet(Random.Range(0, 360), transform.position, 8);
+                        InstBullet(Random.Range(0, 360), transform.position, 8);
+                        break;
+
+                    case 3:
+                        InstBullet(Random.Range(0, 360), transform.position, 8);
+                        InstBullet(Random.Range(0, 360), transform.position, 8);
+                        InstBullet(Random.Range(0, 360), transform.position, 8);
+                        InstBullet(Random.Range(0, 360), transform.position, 8);
+                        break;
+
+                    case 4:
+                        InstBullet(Random.Range(0, 360), transform.position, 8);
+                        InstBullet(Random.Range(0, 360), transform.position, 8);
+                        InstBullet(Random.Range(0, 360), transform.position, 8);
+                        InstBullet(Random.Range(0, 360), transform.position, 8);
+                        InstBullet(Random.Range(0, 360), transform.position, 8);
+                        break;
+
+
+                }
+            }
 
 
 

@@ -51,21 +51,40 @@ public class TakingDamage : MonoBehaviourPunCallbacks
     {
         if (hp > 0f)
         {
-            hp -= _damage;
-            hpBar.fillAmount = hp / startHp;
-            damageSound.Play();
 
-
-            if (hp <= 0f)
+            if (_damage > 0)　　//ダメージ処理
             {
-                deadText.SetActive(true);
-                Die();
-                dieSound.Play(); //死亡のお知らせ音を再生
-                if (photonView.IsMine)
+                hp -= _damage;
+                hpBar.fillAmount = hp / startHp;
+
+                damageSound.Play();
+
+                if (hp <= 0f)　　//死んだら
                 {
-                    killText.GetComponent<TextMeshProUGUI>().text = "You were killed by " + info.Sender.NickName; //自分の画面にやられたことを表示
+                    deadText.SetActive(true);
+                    Die();
+                    dieSound.Play(); //死亡のお知らせ音を再生
+                    if (photonView.IsMine)
+                    {
+                        killText.GetComponent<TextMeshProUGUI>().text = "You were killed by " + info.Sender.NickName; //自分の画面にやられたことを表示
+                    }
                 }
             }
+            if(_damage<0)　　//回復処理
+            {
+                if (hp - _damage > startHp)
+                {
+                    hp = startHp;       //上限以上は回復しない
+                    hpBar.fillAmount = hp / startHp;
+                }
+                if(hp - _damage <= startHp)
+                {
+                    hp -= _damage;
+                    hpBar.fillAmount = hp / startHp;
+                }
+                
+            }
+
         }
     }
 

@@ -119,7 +119,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 43
+  controlID: 21
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 44
+  controlID: 22
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -169,7 +169,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 45
+  controlID: 23
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -312,7 +312,7 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_MixersTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 9282ffff
+    m_SelectedIDs: 
     m_LastClickedID: -32110
     m_ExpandedIDs: 12eb343c
     m_RenameOverlay:
@@ -552,13 +552,13 @@ MonoBehaviour:
     m_LastAppliedPresetName: Default
     m_SaveData: []
     m_OverlaysVisible: 1
-  progressMessageClearTime: 41591.8369379
+  progressMessageClearTime: -1
   notificationClearTime: -1
   timeSinceLastRotation: -1
   currentBranchAndRemoteHasUpdate: 0
-  currentTrackingStatusHasUpdate: 0
-  currentStatusEntriesHasUpdate: 0
-  repositoryProgressHasUpdate: 0
+  currentTrackingStatusHasUpdate: 1
+  currentStatusEntriesHasUpdate: 1
+  repositoryProgressHasUpdate: 1
   appManagerProgressHasUpdate: 1
   changeTab: 3
   activeTab: 3
@@ -752,487 +752,12 @@ MonoBehaviour:
     treeScroll: {x: 0, y: 0}
     treeChanges:
       assets:
-        keys:
-        - 00000000000000001000000000000000
-        - d06115e1aaa996a41a3ac4d4d8fa4bdb
-        - 949984c943b59da4f803906143bab968
-        - 15c355e3b28018f46b66d9d92addd17a
-        - 7fcfd5ba523eaf84f99dff528b7c95e9
-        - 6690df86e6ab4e9459df10fbf0655492
-        - 86c420dd311a9e745be5ce66f27f308c
-        - 98951132346795f438babe7a3183da43
-        - d2b6672cc770a19438ff06fcb2637630
-        - faf75419043a6a84685a41637dfb9f4e
-        - 8135c7568d5706041b657804c49f20f2
-        - 6dfd85869103c8947a115d1e79dd5d19
-        - a88e613016a79a348a65f63b51e9d8ba
-        - 8a6c12f28e9186640a7d781e32ea4978
-        - 747410e7c50ddf240ad545bed7020e83
-        - 6cde5f2569bac8345bcf74fcc566c489
-        values:
-        - path: Assets
-          label: Assets
-          level: 0
-          isFolder: 1
-          isContainer: 0
-          isCollapsed: 0
-          isHidden: 0
-          isActive: 0
-          treeIsCheckable: 1
-          checkState: 0
-          isLocked: 0
-          gitStatusEntry:
-            path: 
-            fullPath: 
-            projectPath: 
-            originalPath: 
-            indexStatus: 0
-            workTreeStatus: 0
-        - path: Assets\Audios
-          label: Audios
-          level: 1
-          isFolder: 1
-          isContainer: 0
-          isCollapsed: 0
-          isHidden: 0
-          isActive: 0
-          treeIsCheckable: 1
-          checkState: 0
-          isLocked: 0
-          gitStatusEntry:
-            path: 
-            fullPath: 
-            projectPath: 
-            originalPath: 
-            indexStatus: 0
-            workTreeStatus: 0
-        - path: Assets\Audios\SE
-          label: SE
-          level: 2
-          isFolder: 1
-          isContainer: 0
-          isCollapsed: 0
-          isHidden: 0
-          isActive: 0
-          treeIsCheckable: 1
-          checkState: 0
-          isLocked: 0
-          gitStatusEntry:
-            path: 
-            fullPath: 
-            projectPath: 
-            originalPath: 
-            indexStatus: 0
-            workTreeStatus: 0
-        - path: "Assets\\Audios\\SE\\\u30B7\u30E7\u30C3\u30C8.mp3"
-          label: "\u30B7\u30E7\u30C3\u30C8.mp3"
-          level: 3
-          isFolder: 0
-          isContainer: 1
-          isCollapsed: 0
-          isHidden: 0
-          isActive: 0
-          treeIsCheckable: 1
-          checkState: 0
-          isLocked: 0
-          gitStatusEntry:
-            path: "Assets\\Audios\\SE\\\u30B7\u30E7\u30C3\u30C8.mp3"
-            fullPath: "D:\\Ueda Jinya\\Documents\\GitHub\\DanmakuTPS\\Assets\\Audios\\SE\\\u30B7\u30E7\u30C3\u30C8.mp3"
-            projectPath: "Assets\\Audios\\SE\\\u30B7\u30E7\u30C3\u30C8.mp3"
-            originalPath: 
-            indexStatus: 1
-            workTreeStatus: 1
-        - path: "Assets\\Audios\\SE\\\u30B7\u30E7\u30C3\u30C8\u547D\u4E2D.mp3"
-          label: "\u30B7\u30E7\u30C3\u30C8\u547D\u4E2D.mp3"
-          level: 3
-          isFolder: 0
-          isContainer: 1
-          isCollapsed: 0
-          isHidden: 0
-          isActive: 0
-          treeIsCheckable: 1
-          checkState: 0
-          isLocked: 0
-          gitStatusEntry:
-            path: "Assets\\Audios\\SE\\\u30B7\u30E7\u30C3\u30C8\u547D\u4E2D.mp3"
-            fullPath: "D:\\Ueda Jinya\\Documents\\GitHub\\DanmakuTPS\\Assets\\Audios\\SE\\\u30B7\u30E7\u30C3\u30C8\u547D\u4E2D.mp3"
-            projectPath: "Assets\\Audios\\SE\\\u30B7\u30E7\u30C3\u30C8\u547D\u4E2D.mp3"
-            originalPath: 
-            indexStatus: 1
-            workTreeStatus: 1
-        - path: "Assets\\Audios\\SE\\\u30D1\u30EF\u30FC\u30A2\u30C3\u30D7.mp3"
-          label: "\u30D1\u30EF\u30FC\u30A2\u30C3\u30D7.mp3"
-          level: 3
-          isFolder: 0
-          isContainer: 1
-          isCollapsed: 0
-          isHidden: 0
-          isActive: 0
-          treeIsCheckable: 1
-          checkState: 0
-          isLocked: 0
-          gitStatusEntry:
-            path: "Assets\\Audios\\SE\\\u30D1\u30EF\u30FC\u30A2\u30C3\u30D7.mp3"
-            fullPath: "D:\\Ueda Jinya\\Documents\\GitHub\\DanmakuTPS\\Assets\\Audios\\SE\\\u30D1\u30EF\u30FC\u30A2\u30C3\u30D7.mp3"
-            projectPath: "Assets\\Audios\\SE\\\u30D1\u30EF\u30FC\u30A2\u30C3\u30D7.mp3"
-            originalPath: 
-            indexStatus: 1
-            workTreeStatus: 1
-        - path: "Assets\\Audios\\SE\\\u7206\u767A1.mp3"
-          label: "\u7206\u767A1.mp3"
-          level: 3
-          isFolder: 0
-          isContainer: 1
-          isCollapsed: 0
-          isHidden: 0
-          isActive: 0
-          treeIsCheckable: 1
-          checkState: 0
-          isLocked: 0
-          gitStatusEntry:
-            path: "Assets\\Audios\\SE\\\u7206\u767A1.mp3"
-            fullPath: "D:\\Ueda Jinya\\Documents\\GitHub\\DanmakuTPS\\Assets\\Audios\\SE\\\u7206\u767A1.mp3"
-            projectPath: "Assets\\Audios\\SE\\\u7206\u767A1.mp3"
-            originalPath: 
-            indexStatus: 1
-            workTreeStatus: 1
-        - path: Assets\Photon
-          label: Photon
-          level: 1
-          isFolder: 1
-          isContainer: 0
-          isCollapsed: 0
-          isHidden: 0
-          isActive: 0
-          treeIsCheckable: 1
-          checkState: 0
-          isLocked: 0
-          gitStatusEntry:
-            path: 
-            fullPath: 
-            projectPath: 
-            originalPath: 
-            indexStatus: 0
-            workTreeStatus: 0
-        - path: Assets\Photon\PhotonUnityNetworking
-          label: PhotonUnityNetworking
-          level: 2
-          isFolder: 1
-          isContainer: 0
-          isCollapsed: 0
-          isHidden: 0
-          isActive: 0
-          treeIsCheckable: 1
-          checkState: 0
-          isLocked: 0
-          gitStatusEntry:
-            path: 
-            fullPath: 
-            projectPath: 
-            originalPath: 
-            indexStatus: 0
-            workTreeStatus: 0
-        - path: Assets\Photon\PhotonUnityNetworking\Resources
-          label: Resources
-          level: 3
-          isFolder: 1
-          isContainer: 0
-          isCollapsed: 0
-          isHidden: 0
-          isActive: 0
-          treeIsCheckable: 1
-          checkState: 0
-          isLocked: 0
-          gitStatusEntry:
-            path: 
-            fullPath: 
-            projectPath: 
-            originalPath: 
-            indexStatus: 0
-            workTreeStatus: 0
-        - path: Assets\Photon\PhotonUnityNetworking\Resources\PhotonServerSettings.asset
-          label: PhotonServerSettings.asset
-          level: 4
-          isFolder: 0
-          isContainer: 0
-          isCollapsed: 0
-          isHidden: 0
-          isActive: 0
-          treeIsCheckable: 1
-          checkState: 0
-          isLocked: 0
-          gitStatusEntry:
-            path: Assets\Photon\PhotonUnityNetworking\Resources\PhotonServerSettings.asset
-            fullPath: D:\Ueda Jinya\Documents\GitHub\DanmakuTPS\Assets\Photon\PhotonUnityNetworking\Resources\PhotonServerSettings.asset
-            projectPath: Assets\Photon\PhotonUnityNetworking\Resources\PhotonServerSettings.asset
-            originalPath: 
-            indexStatus: 0
-            workTreeStatus: 3
-        - path: Assets\Scenes
-          label: Scenes
-          level: 1
-          isFolder: 1
-          isContainer: 0
-          isCollapsed: 0
-          isHidden: 0
-          isActive: 0
-          treeIsCheckable: 1
-          checkState: 0
-          isLocked: 0
-          gitStatusEntry:
-            path: 
-            fullPath: 
-            projectPath: 
-            originalPath: 
-            indexStatus: 0
-            workTreeStatus: 0
-        - path: Assets\Scenes\GameScene.unity
-          label: GameScene.unity
-          level: 2
-          isFolder: 0
-          isContainer: 0
-          isCollapsed: 0
-          isHidden: 0
-          isActive: 0
-          treeIsCheckable: 1
-          checkState: 0
-          isLocked: 0
-          gitStatusEntry:
-            path: Assets\Scenes\GameScene.unity
-            fullPath: D:\Ueda Jinya\Documents\GitHub\DanmakuTPS\Assets\Scenes\GameScene.unity
-            projectPath: Assets\Scenes\GameScene.unity
-            originalPath: 
-            indexStatus: 0
-            workTreeStatus: 3
-        - path: Assets\Scripts
-          label: Scripts
-          level: 1
-          isFolder: 1
-          isContainer: 0
-          isCollapsed: 0
-          isHidden: 0
-          isActive: 0
-          treeIsCheckable: 1
-          checkState: 0
-          isLocked: 0
-          gitStatusEntry:
-            path: 
-            fullPath: 
-            projectPath: 
-            originalPath: 
-            indexStatus: 0
-            workTreeStatus: 0
-        - path: Assets\Scripts\GameScene
-          label: GameScene
-          level: 2
-          isFolder: 1
-          isContainer: 0
-          isCollapsed: 0
-          isHidden: 0
-          isActive: 0
-          treeIsCheckable: 1
-          checkState: 0
-          isLocked: 0
-          gitStatusEntry:
-            path: 
-            fullPath: 
-            projectPath: 
-            originalPath: 
-            indexStatus: 0
-            workTreeStatus: 0
-        - path: Assets\Scripts\GameScene\Shoot.cs
-          label: Shoot.cs
-          level: 3
-          isFolder: 0
-          isContainer: 0
-          isCollapsed: 0
-          isHidden: 0
-          isActive: 0
-          treeIsCheckable: 1
-          checkState: 0
-          isLocked: 0
-          gitStatusEntry:
-            path: Assets\Scripts\GameScene\Shoot.cs
-            fullPath: D:\Ueda Jinya\Documents\GitHub\DanmakuTPS\Assets\Scripts\GameScene\Shoot.cs
-            projectPath: Assets\Scripts\GameScene\Shoot.cs
-            originalPath: 
-            indexStatus: 0
-            workTreeStatus: 3
+        keys: []
+        values: []
       folders:
         keys:
-        - Assets
-        - Assets\Audios
-        - Assets\Audios\SE
-        - Assets\Photon
-        - Assets\Photon\PhotonUnityNetworking
-        - Assets\Photon\PhotonUnityNetworking\Resources
-        - Assets\Scenes
-        - Assets\Scripts
-        - Assets\Scripts\GameScene
         - UserSettings
         values:
-        - path: Assets
-          label: Assets
-          level: 0
-          isFolder: 1
-          isContainer: 0
-          isCollapsed: 0
-          isHidden: 0
-          isActive: 0
-          treeIsCheckable: 1
-          checkState: 0
-          isLocked: 0
-          gitStatusEntry:
-            path: 
-            fullPath: 
-            projectPath: 
-            originalPath: 
-            indexStatus: 0
-            workTreeStatus: 0
-        - path: Assets\Audios
-          label: Audios
-          level: 1
-          isFolder: 1
-          isContainer: 0
-          isCollapsed: 0
-          isHidden: 0
-          isActive: 0
-          treeIsCheckable: 1
-          checkState: 0
-          isLocked: 0
-          gitStatusEntry:
-            path: 
-            fullPath: 
-            projectPath: 
-            originalPath: 
-            indexStatus: 0
-            workTreeStatus: 0
-        - path: Assets\Audios\SE
-          label: SE
-          level: 2
-          isFolder: 1
-          isContainer: 0
-          isCollapsed: 0
-          isHidden: 0
-          isActive: 0
-          treeIsCheckable: 1
-          checkState: 0
-          isLocked: 0
-          gitStatusEntry:
-            path: 
-            fullPath: 
-            projectPath: 
-            originalPath: 
-            indexStatus: 0
-            workTreeStatus: 0
-        - path: Assets\Photon
-          label: Photon
-          level: 1
-          isFolder: 1
-          isContainer: 0
-          isCollapsed: 0
-          isHidden: 0
-          isActive: 0
-          treeIsCheckable: 1
-          checkState: 0
-          isLocked: 0
-          gitStatusEntry:
-            path: 
-            fullPath: 
-            projectPath: 
-            originalPath: 
-            indexStatus: 0
-            workTreeStatus: 0
-        - path: Assets\Photon\PhotonUnityNetworking
-          label: PhotonUnityNetworking
-          level: 2
-          isFolder: 1
-          isContainer: 0
-          isCollapsed: 0
-          isHidden: 0
-          isActive: 0
-          treeIsCheckable: 1
-          checkState: 0
-          isLocked: 0
-          gitStatusEntry:
-            path: 
-            fullPath: 
-            projectPath: 
-            originalPath: 
-            indexStatus: 0
-            workTreeStatus: 0
-        - path: Assets\Photon\PhotonUnityNetworking\Resources
-          label: Resources
-          level: 3
-          isFolder: 1
-          isContainer: 0
-          isCollapsed: 0
-          isHidden: 0
-          isActive: 0
-          treeIsCheckable: 1
-          checkState: 0
-          isLocked: 0
-          gitStatusEntry:
-            path: 
-            fullPath: 
-            projectPath: 
-            originalPath: 
-            indexStatus: 0
-            workTreeStatus: 0
-        - path: Assets\Scenes
-          label: Scenes
-          level: 1
-          isFolder: 1
-          isContainer: 0
-          isCollapsed: 0
-          isHidden: 0
-          isActive: 0
-          treeIsCheckable: 1
-          checkState: 0
-          isLocked: 0
-          gitStatusEntry:
-            path: 
-            fullPath: 
-            projectPath: 
-            originalPath: 
-            indexStatus: 0
-            workTreeStatus: 0
-        - path: Assets\Scripts
-          label: Scripts
-          level: 1
-          isFolder: 1
-          isContainer: 0
-          isCollapsed: 0
-          isHidden: 0
-          isActive: 0
-          treeIsCheckable: 1
-          checkState: 0
-          isLocked: 0
-          gitStatusEntry:
-            path: 
-            fullPath: 
-            projectPath: 
-            originalPath: 
-            indexStatus: 0
-            workTreeStatus: 0
-        - path: Assets\Scripts\GameScene
-          label: GameScene
-          level: 2
-          isFolder: 1
-          isContainer: 0
-          isCollapsed: 0
-          isHidden: 0
-          isActive: 0
-          treeIsCheckable: 1
-          checkState: 0
-          isLocked: 0
-          gitStatusEntry:
-            path: 
-            fullPath: 
-            projectPath: 
-            originalPath: 
-            indexStatus: 0
-            workTreeStatus: 0
         - path: UserSettings
           label: UserSettings
           level: 0
@@ -1279,366 +804,6 @@ MonoBehaviour:
           originalPath: 
           indexStatus: 0
           workTreeStatus: 0
-      - path: Assets
-        label: Assets
-        level: 0
-        isFolder: 1
-        isContainer: 0
-        isCollapsed: 0
-        isHidden: 0
-        isActive: 0
-        treeIsCheckable: 1
-        checkState: 0
-        isLocked: 0
-        gitStatusEntry:
-          path: 
-          fullPath: 
-          projectPath: 
-          originalPath: 
-          indexStatus: 0
-          workTreeStatus: 0
-      - path: Assets\Audios
-        label: Audios
-        level: 1
-        isFolder: 1
-        isContainer: 0
-        isCollapsed: 0
-        isHidden: 0
-        isActive: 0
-        treeIsCheckable: 1
-        checkState: 0
-        isLocked: 0
-        gitStatusEntry:
-          path: 
-          fullPath: 
-          projectPath: 
-          originalPath: 
-          indexStatus: 0
-          workTreeStatus: 0
-      - path: Assets\Audios\SE
-        label: SE
-        level: 2
-        isFolder: 1
-        isContainer: 0
-        isCollapsed: 0
-        isHidden: 0
-        isActive: 0
-        treeIsCheckable: 1
-        checkState: 0
-        isLocked: 0
-        gitStatusEntry:
-          path: 
-          fullPath: 
-          projectPath: 
-          originalPath: 
-          indexStatus: 0
-          workTreeStatus: 0
-      - path: "Assets\\Audios\\SE\\\u30B7\u30E7\u30C3\u30C8.mp3"
-        label: "\u30B7\u30E7\u30C3\u30C8.mp3"
-        level: 3
-        isFolder: 0
-        isContainer: 1
-        isCollapsed: 0
-        isHidden: 0
-        isActive: 0
-        treeIsCheckable: 1
-        checkState: 0
-        isLocked: 0
-        gitStatusEntry:
-          path: "Assets\\Audios\\SE\\\u30B7\u30E7\u30C3\u30C8.mp3"
-          fullPath: "D:\\Ueda Jinya\\Documents\\GitHub\\DanmakuTPS\\Assets\\Audios\\SE\\\u30B7\u30E7\u30C3\u30C8.mp3"
-          projectPath: "Assets\\Audios\\SE\\\u30B7\u30E7\u30C3\u30C8.mp3"
-          originalPath: 
-          indexStatus: 1
-          workTreeStatus: 1
-      - path: "Assets\\Audios\\SE\\\u30B7\u30E7\u30C3\u30C8.mp3.meta"
-        label: "\u30B7\u30E7\u30C3\u30C8.mp3.meta"
-        level: 4
-        isFolder: 0
-        isContainer: 0
-        isCollapsed: 0
-        isHidden: 0
-        isActive: 0
-        treeIsCheckable: 1
-        checkState: 0
-        isLocked: 0
-        gitStatusEntry:
-          path: "Assets\\Audios\\SE\\\u30B7\u30E7\u30C3\u30C8.mp3.meta"
-          fullPath: "D:\\Ueda Jinya\\Documents\\GitHub\\DanmakuTPS\\Assets\\Audios\\SE\\\u30B7\u30E7\u30C3\u30C8.mp3.meta"
-          projectPath: "Assets\\Audios\\SE\\\u30B7\u30E7\u30C3\u30C8.mp3.meta"
-          originalPath: 
-          indexStatus: 1
-          workTreeStatus: 1
-      - path: "Assets\\Audios\\SE\\\u30B7\u30E7\u30C3\u30C8\u547D\u4E2D.mp3"
-        label: "\u30B7\u30E7\u30C3\u30C8\u547D\u4E2D.mp3"
-        level: 3
-        isFolder: 0
-        isContainer: 1
-        isCollapsed: 0
-        isHidden: 0
-        isActive: 0
-        treeIsCheckable: 1
-        checkState: 0
-        isLocked: 0
-        gitStatusEntry:
-          path: "Assets\\Audios\\SE\\\u30B7\u30E7\u30C3\u30C8\u547D\u4E2D.mp3"
-          fullPath: "D:\\Ueda Jinya\\Documents\\GitHub\\DanmakuTPS\\Assets\\Audios\\SE\\\u30B7\u30E7\u30C3\u30C8\u547D\u4E2D.mp3"
-          projectPath: "Assets\\Audios\\SE\\\u30B7\u30E7\u30C3\u30C8\u547D\u4E2D.mp3"
-          originalPath: 
-          indexStatus: 1
-          workTreeStatus: 1
-      - path: "Assets\\Audios\\SE\\\u30B7\u30E7\u30C3\u30C8\u547D\u4E2D.mp3.meta"
-        label: "\u30B7\u30E7\u30C3\u30C8\u547D\u4E2D.mp3.meta"
-        level: 4
-        isFolder: 0
-        isContainer: 0
-        isCollapsed: 0
-        isHidden: 0
-        isActive: 0
-        treeIsCheckable: 1
-        checkState: 0
-        isLocked: 0
-        gitStatusEntry:
-          path: "Assets\\Audios\\SE\\\u30B7\u30E7\u30C3\u30C8\u547D\u4E2D.mp3.meta"
-          fullPath: "D:\\Ueda Jinya\\Documents\\GitHub\\DanmakuTPS\\Assets\\Audios\\SE\\\u30B7\u30E7\u30C3\u30C8\u547D\u4E2D.mp3.meta"
-          projectPath: "Assets\\Audios\\SE\\\u30B7\u30E7\u30C3\u30C8\u547D\u4E2D.mp3.meta"
-          originalPath: 
-          indexStatus: 1
-          workTreeStatus: 1
-      - path: "Assets\\Audios\\SE\\\u30D1\u30EF\u30FC\u30A2\u30C3\u30D7.mp3"
-        label: "\u30D1\u30EF\u30FC\u30A2\u30C3\u30D7.mp3"
-        level: 3
-        isFolder: 0
-        isContainer: 1
-        isCollapsed: 0
-        isHidden: 0
-        isActive: 0
-        treeIsCheckable: 1
-        checkState: 0
-        isLocked: 0
-        gitStatusEntry:
-          path: "Assets\\Audios\\SE\\\u30D1\u30EF\u30FC\u30A2\u30C3\u30D7.mp3"
-          fullPath: "D:\\Ueda Jinya\\Documents\\GitHub\\DanmakuTPS\\Assets\\Audios\\SE\\\u30D1\u30EF\u30FC\u30A2\u30C3\u30D7.mp3"
-          projectPath: "Assets\\Audios\\SE\\\u30D1\u30EF\u30FC\u30A2\u30C3\u30D7.mp3"
-          originalPath: 
-          indexStatus: 1
-          workTreeStatus: 1
-      - path: "Assets\\Audios\\SE\\\u30D1\u30EF\u30FC\u30A2\u30C3\u30D7.mp3.meta"
-        label: "\u30D1\u30EF\u30FC\u30A2\u30C3\u30D7.mp3.meta"
-        level: 4
-        isFolder: 0
-        isContainer: 0
-        isCollapsed: 0
-        isHidden: 0
-        isActive: 0
-        treeIsCheckable: 1
-        checkState: 0
-        isLocked: 0
-        gitStatusEntry:
-          path: "Assets\\Audios\\SE\\\u30D1\u30EF\u30FC\u30A2\u30C3\u30D7.mp3.meta"
-          fullPath: "D:\\Ueda Jinya\\Documents\\GitHub\\DanmakuTPS\\Assets\\Audios\\SE\\\u30D1\u30EF\u30FC\u30A2\u30C3\u30D7.mp3.meta"
-          projectPath: "Assets\\Audios\\SE\\\u30D1\u30EF\u30FC\u30A2\u30C3\u30D7.mp3.meta"
-          originalPath: 
-          indexStatus: 1
-          workTreeStatus: 1
-      - path: "Assets\\Audios\\SE\\\u7206\u767A1.mp3"
-        label: "\u7206\u767A1.mp3"
-        level: 3
-        isFolder: 0
-        isContainer: 1
-        isCollapsed: 0
-        isHidden: 0
-        isActive: 0
-        treeIsCheckable: 1
-        checkState: 0
-        isLocked: 0
-        gitStatusEntry:
-          path: "Assets\\Audios\\SE\\\u7206\u767A1.mp3"
-          fullPath: "D:\\Ueda Jinya\\Documents\\GitHub\\DanmakuTPS\\Assets\\Audios\\SE\\\u7206\u767A1.mp3"
-          projectPath: "Assets\\Audios\\SE\\\u7206\u767A1.mp3"
-          originalPath: 
-          indexStatus: 1
-          workTreeStatus: 1
-      - path: "Assets\\Audios\\SE\\\u7206\u767A1.mp3.meta"
-        label: "\u7206\u767A1.mp3.meta"
-        level: 4
-        isFolder: 0
-        isContainer: 0
-        isCollapsed: 0
-        isHidden: 0
-        isActive: 0
-        treeIsCheckable: 1
-        checkState: 0
-        isLocked: 0
-        gitStatusEntry:
-          path: "Assets\\Audios\\SE\\\u7206\u767A1.mp3.meta"
-          fullPath: "D:\\Ueda Jinya\\Documents\\GitHub\\DanmakuTPS\\Assets\\Audios\\SE\\\u7206\u767A1.mp3.meta"
-          projectPath: "Assets\\Audios\\SE\\\u7206\u767A1.mp3.meta"
-          originalPath: 
-          indexStatus: 1
-          workTreeStatus: 1
-      - path: Assets\Photon
-        label: Photon
-        level: 1
-        isFolder: 1
-        isContainer: 0
-        isCollapsed: 0
-        isHidden: 0
-        isActive: 0
-        treeIsCheckable: 1
-        checkState: 0
-        isLocked: 0
-        gitStatusEntry:
-          path: 
-          fullPath: 
-          projectPath: 
-          originalPath: 
-          indexStatus: 0
-          workTreeStatus: 0
-      - path: Assets\Photon\PhotonUnityNetworking
-        label: PhotonUnityNetworking
-        level: 2
-        isFolder: 1
-        isContainer: 0
-        isCollapsed: 0
-        isHidden: 0
-        isActive: 0
-        treeIsCheckable: 1
-        checkState: 0
-        isLocked: 0
-        gitStatusEntry:
-          path: 
-          fullPath: 
-          projectPath: 
-          originalPath: 
-          indexStatus: 0
-          workTreeStatus: 0
-      - path: Assets\Photon\PhotonUnityNetworking\Resources
-        label: Resources
-        level: 3
-        isFolder: 1
-        isContainer: 0
-        isCollapsed: 0
-        isHidden: 0
-        isActive: 0
-        treeIsCheckable: 1
-        checkState: 0
-        isLocked: 0
-        gitStatusEntry:
-          path: 
-          fullPath: 
-          projectPath: 
-          originalPath: 
-          indexStatus: 0
-          workTreeStatus: 0
-      - path: Assets\Photon\PhotonUnityNetworking\Resources\PhotonServerSettings.asset
-        label: PhotonServerSettings.asset
-        level: 4
-        isFolder: 0
-        isContainer: 0
-        isCollapsed: 0
-        isHidden: 0
-        isActive: 0
-        treeIsCheckable: 1
-        checkState: 0
-        isLocked: 0
-        gitStatusEntry:
-          path: Assets\Photon\PhotonUnityNetworking\Resources\PhotonServerSettings.asset
-          fullPath: D:\Ueda Jinya\Documents\GitHub\DanmakuTPS\Assets\Photon\PhotonUnityNetworking\Resources\PhotonServerSettings.asset
-          projectPath: Assets\Photon\PhotonUnityNetworking\Resources\PhotonServerSettings.asset
-          originalPath: 
-          indexStatus: 0
-          workTreeStatus: 3
-      - path: Assets\Scenes
-        label: Scenes
-        level: 1
-        isFolder: 1
-        isContainer: 0
-        isCollapsed: 0
-        isHidden: 0
-        isActive: 0
-        treeIsCheckable: 1
-        checkState: 0
-        isLocked: 0
-        gitStatusEntry:
-          path: 
-          fullPath: 
-          projectPath: 
-          originalPath: 
-          indexStatus: 0
-          workTreeStatus: 0
-      - path: Assets\Scenes\GameScene.unity
-        label: GameScene.unity
-        level: 2
-        isFolder: 0
-        isContainer: 0
-        isCollapsed: 0
-        isHidden: 0
-        isActive: 0
-        treeIsCheckable: 1
-        checkState: 0
-        isLocked: 0
-        gitStatusEntry:
-          path: Assets\Scenes\GameScene.unity
-          fullPath: D:\Ueda Jinya\Documents\GitHub\DanmakuTPS\Assets\Scenes\GameScene.unity
-          projectPath: Assets\Scenes\GameScene.unity
-          originalPath: 
-          indexStatus: 0
-          workTreeStatus: 3
-      - path: Assets\Scripts
-        label: Scripts
-        level: 1
-        isFolder: 1
-        isContainer: 0
-        isCollapsed: 0
-        isHidden: 0
-        isActive: 0
-        treeIsCheckable: 1
-        checkState: 0
-        isLocked: 0
-        gitStatusEntry:
-          path: 
-          fullPath: 
-          projectPath: 
-          originalPath: 
-          indexStatus: 0
-          workTreeStatus: 0
-      - path: Assets\Scripts\GameScene
-        label: GameScene
-        level: 2
-        isFolder: 1
-        isContainer: 0
-        isCollapsed: 0
-        isHidden: 0
-        isActive: 0
-        treeIsCheckable: 1
-        checkState: 0
-        isLocked: 0
-        gitStatusEntry:
-          path: 
-          fullPath: 
-          projectPath: 
-          originalPath: 
-          indexStatus: 0
-          workTreeStatus: 0
-      - path: Assets\Scripts\GameScene\Shoot.cs
-        label: Shoot.cs
-        level: 3
-        isFolder: 0
-        isContainer: 0
-        isCollapsed: 0
-        isHidden: 0
-        isActive: 0
-        treeIsCheckable: 1
-        checkState: 0
-        isLocked: 0
-        gitStatusEntry:
-          path: Assets\Scripts\GameScene\Shoot.cs
-          fullPath: D:\Ueda Jinya\Documents\GitHub\DanmakuTPS\Assets\Scripts\GameScene\Shoot.cs
-          projectPath: Assets\Scripts\GameScene\Shoot.cs
-          originalPath: 
-          indexStatus: 0
-          workTreeStatus: 3
       - path: UserSettings
         label: UserSettings
         level: 0
@@ -1695,84 +860,18 @@ MonoBehaviour:
           indexStatus: 0
           workTreeStatus: 0
     gitStatusEntries:
-    - path: "Assets\\Audios\\SE\\\u30B7\u30E7\u30C3\u30C8.mp3"
-      fullPath: "D:\\Ueda Jinya\\Documents\\GitHub\\DanmakuTPS\\Assets\\Audios\\SE\\\u30B7\u30E7\u30C3\u30C8.mp3"
-      projectPath: "Assets\\Audios\\SE\\\u30B7\u30E7\u30C3\u30C8.mp3"
-      originalPath: 
-      indexStatus: 1
-      workTreeStatus: 1
-    - path: "Assets\\Audios\\SE\\\u30B7\u30E7\u30C3\u30C8.mp3.meta"
-      fullPath: "D:\\Ueda Jinya\\Documents\\GitHub\\DanmakuTPS\\Assets\\Audios\\SE\\\u30B7\u30E7\u30C3\u30C8.mp3.meta"
-      projectPath: "Assets\\Audios\\SE\\\u30B7\u30E7\u30C3\u30C8.mp3.meta"
-      originalPath: 
-      indexStatus: 1
-      workTreeStatus: 1
-    - path: "Assets\\Audios\\SE\\\u30B7\u30E7\u30C3\u30C8\u547D\u4E2D.mp3"
-      fullPath: "D:\\Ueda Jinya\\Documents\\GitHub\\DanmakuTPS\\Assets\\Audios\\SE\\\u30B7\u30E7\u30C3\u30C8\u547D\u4E2D.mp3"
-      projectPath: "Assets\\Audios\\SE\\\u30B7\u30E7\u30C3\u30C8\u547D\u4E2D.mp3"
-      originalPath: 
-      indexStatus: 1
-      workTreeStatus: 1
-    - path: "Assets\\Audios\\SE\\\u30B7\u30E7\u30C3\u30C8\u547D\u4E2D.mp3.meta"
-      fullPath: "D:\\Ueda Jinya\\Documents\\GitHub\\DanmakuTPS\\Assets\\Audios\\SE\\\u30B7\u30E7\u30C3\u30C8\u547D\u4E2D.mp3.meta"
-      projectPath: "Assets\\Audios\\SE\\\u30B7\u30E7\u30C3\u30C8\u547D\u4E2D.mp3.meta"
-      originalPath: 
-      indexStatus: 1
-      workTreeStatus: 1
-    - path: "Assets\\Audios\\SE\\\u30D1\u30EF\u30FC\u30A2\u30C3\u30D7.mp3"
-      fullPath: "D:\\Ueda Jinya\\Documents\\GitHub\\DanmakuTPS\\Assets\\Audios\\SE\\\u30D1\u30EF\u30FC\u30A2\u30C3\u30D7.mp3"
-      projectPath: "Assets\\Audios\\SE\\\u30D1\u30EF\u30FC\u30A2\u30C3\u30D7.mp3"
-      originalPath: 
-      indexStatus: 1
-      workTreeStatus: 1
-    - path: "Assets\\Audios\\SE\\\u30D1\u30EF\u30FC\u30A2\u30C3\u30D7.mp3.meta"
-      fullPath: "D:\\Ueda Jinya\\Documents\\GitHub\\DanmakuTPS\\Assets\\Audios\\SE\\\u30D1\u30EF\u30FC\u30A2\u30C3\u30D7.mp3.meta"
-      projectPath: "Assets\\Audios\\SE\\\u30D1\u30EF\u30FC\u30A2\u30C3\u30D7.mp3.meta"
-      originalPath: 
-      indexStatus: 1
-      workTreeStatus: 1
-    - path: "Assets\\Audios\\SE\\\u7206\u767A1.mp3"
-      fullPath: "D:\\Ueda Jinya\\Documents\\GitHub\\DanmakuTPS\\Assets\\Audios\\SE\\\u7206\u767A1.mp3"
-      projectPath: "Assets\\Audios\\SE\\\u7206\u767A1.mp3"
-      originalPath: 
-      indexStatus: 1
-      workTreeStatus: 1
-    - path: "Assets\\Audios\\SE\\\u7206\u767A1.mp3.meta"
-      fullPath: "D:\\Ueda Jinya\\Documents\\GitHub\\DanmakuTPS\\Assets\\Audios\\SE\\\u7206\u767A1.mp3.meta"
-      projectPath: "Assets\\Audios\\SE\\\u7206\u767A1.mp3.meta"
-      originalPath: 
-      indexStatus: 1
-      workTreeStatus: 1
-    - path: Assets\Photon\PhotonUnityNetworking\Resources\PhotonServerSettings.asset
-      fullPath: D:\Ueda Jinya\Documents\GitHub\DanmakuTPS\Assets\Photon\PhotonUnityNetworking\Resources\PhotonServerSettings.asset
-      projectPath: Assets\Photon\PhotonUnityNetworking\Resources\PhotonServerSettings.asset
-      originalPath: 
-      indexStatus: 0
-      workTreeStatus: 3
-    - path: Assets\Scenes\GameScene.unity
-      fullPath: D:\Ueda Jinya\Documents\GitHub\DanmakuTPS\Assets\Scenes\GameScene.unity
-      projectPath: Assets\Scenes\GameScene.unity
-      originalPath: 
-      indexStatus: 0
-      workTreeStatus: 3
-    - path: Assets\Scripts\GameScene\Shoot.cs
-      fullPath: D:\Ueda Jinya\Documents\GitHub\DanmakuTPS\Assets\Scripts\GameScene\Shoot.cs
-      projectPath: Assets\Scripts\GameScene\Shoot.cs
-      originalPath: 
-      indexStatus: 0
-      workTreeStatus: 3
     - path: UserSettings\EditorUserSettings.asset
       fullPath: D:\Ueda Jinya\Documents\GitHub\DanmakuTPS\UserSettings\EditorUserSettings.asset
       projectPath: UserSettings\EditorUserSettings.asset
       originalPath: 
       indexStatus: 0
       workTreeStatus: 3
-    changedFilesText: 12 changed files
+    changedFilesText: 1 changed file
     lastCurrentBranchChangedEvent:
-      updatedTimeString: 2023-08-20T13:37:14.024+09:00
+      updatedTimeString: 2023-08-20T15:00:36.778+09:00
       cacheType: 1
     lastStatusEntriesChangedEvent:
-      updatedTimeString: 2023-08-20T13:40:19.241+09:00
+      updatedTimeString: 2023-08-20T15:15:05.182+09:00
       cacheType: 6
     lastLocksChangedEvent:
       updatedTimeString: 0001-01-01T00:00:00.000+00:00
@@ -56733,13 +55832,13 @@ MonoBehaviour:
     m_Image: {fileID: 0}
     m_Tooltip: Url of the origin remote
   lastCurrentBranchAndRemoteChangedEvent:
-    updatedTimeString: 2023-08-20T12:35:06.327+09:00
+    updatedTimeString: 2023-08-20T14:23:41.515+09:00
     cacheType: 1
   lastTrackingStatusChangedEvent:
-    updatedTimeString: 2023-08-20T12:47:50.215+09:00
+    updatedTimeString: 2023-08-20T14:46:36.845+09:00
     cacheType: 5
   lastStatusEntriesChangedEvent:
-    updatedTimeString: 2023-08-20T12:47:50.203+09:00
+    updatedTimeString: 2023-08-20T14:46:36.838+09:00
     cacheType: 6
   pullButtonContent:
     m_Text: Pull
@@ -56757,7 +55856,7 @@ MonoBehaviour:
     m_Text: Fetch
     m_Image: {fileID: 0}
     m_Tooltip: 
-  repositoryProgressValue: 1
+  repositoryProgressValue: 0
   repositoryProgressMessage: 
   appManagerProgressValue: 1
   appManagerProgressMessage: 
@@ -56825,21 +55924,21 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 4058fdff6e3d0100743d0100863d0100b23d0100d83d0100
+      m_ExpandedIDs: de18ffff8823ffff4c35ffff4a4dffffd259ffff8263ffff466effff066fffffd072ffffcc74ffff2299ffff6c99ffff30bdffff90c3ffffd6daffff92e5ffff74ebffff22fbffff00950000d0a40000e2bf000084c00000b8db0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: 
-        m_OriginalName: 
+        m_Name: Text (TMP)
+        m_OriginalName: Text (TMP)
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 0
+        m_UserData: 54396
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 11
+        m_OriginalEventType: 0
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 8}
       m_SearchString: 
@@ -56905,7 +56004,7 @@ MonoBehaviour:
       collapsed: 0
       displayed: 1
       snapOffset: {x: 0, y: 0}
-      snapOffsetDelta: {x: 0, y: 25}
+      snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: unity-scene-view-toolbar
       index: 0
@@ -56916,7 +56015,7 @@ MonoBehaviour:
       collapsed: 0
       displayed: 0
       snapOffset: {x: 0, y: 0}
-      snapOffsetDelta: {x: 0, y: 25}
+      snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 1
       id: unity-search-toolbar
       index: 1
@@ -56960,7 +56059,7 @@ MonoBehaviour:
       collapsed: 0
       displayed: 0
       snapOffset: {x: 0, y: 0}
-      snapOffsetDelta: {x: 0, y: 25}
+      snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: Scene View/Light Settings
       index: 0
@@ -56982,7 +56081,7 @@ MonoBehaviour:
       collapsed: 0
       displayed: 0
       snapOffset: {x: 0, y: 0}
-      snapOffsetDelta: {x: 0, y: 25}
+      snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: Scene View/Cloth Constraints
       index: 2
@@ -56993,7 +56092,7 @@ MonoBehaviour:
       collapsed: 0
       displayed: 0
       snapOffset: {x: 0, y: 0}
-      snapOffsetDelta: {x: 0, y: 25}
+      snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: Scene View/Cloth Collisions
       index: 3
@@ -57004,7 +56103,7 @@ MonoBehaviour:
       collapsed: 0
       displayed: 0
       snapOffset: {x: 0, y: 0}
-      snapOffsetDelta: {x: 0, y: 25}
+      snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: Scene View/Navmesh Display
       index: 4
@@ -57015,7 +56114,7 @@ MonoBehaviour:
       collapsed: 0
       displayed: 0
       snapOffset: {x: 0, y: 0}
-      snapOffsetDelta: {x: 0, y: 25}
+      snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: Scene View/Agent Display
       index: 5
@@ -57026,7 +56125,7 @@ MonoBehaviour:
       collapsed: 0
       displayed: 0
       snapOffset: {x: 0, y: 0}
-      snapOffsetDelta: {x: 0, y: 25}
+      snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: Scene View/Obstacle Display
       index: 6
@@ -57037,7 +56136,7 @@ MonoBehaviour:
       collapsed: 0
       displayed: 0
       snapOffset: {x: 0, y: 0}
-      snapOffsetDelta: {x: 0, y: 25}
+      snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: Scene View/Occlusion Culling
       index: 7
@@ -57048,7 +56147,7 @@ MonoBehaviour:
       collapsed: 0
       displayed: 0
       snapOffset: {x: 0, y: 0}
-      snapOffsetDelta: {x: 0, y: 25}
+      snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: Scene View/Physics Debugger
       index: 8
@@ -57059,7 +56158,7 @@ MonoBehaviour:
       collapsed: 0
       displayed: 0
       snapOffset: {x: 0, y: 0}
-      snapOffsetDelta: {x: 0, y: 25}
+      snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: Scene View/Scene Visibility
       index: 9
@@ -57070,7 +56169,7 @@ MonoBehaviour:
       collapsed: 0
       displayed: 0
       snapOffset: {x: 0, y: 0}
-      snapOffsetDelta: {x: 0, y: 25}
+      snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: Scene View/Particles
       index: 10
@@ -57103,7 +56202,7 @@ MonoBehaviour:
       collapsed: 0
       displayed: 0
       snapOffset: {x: 0, y: 0}
-      snapOffsetDelta: {x: 0, y: 25}
+      snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: Scene View/Open Tile Palette
       index: 2
@@ -57112,9 +56211,9 @@ MonoBehaviour:
       containerId: overlay-toolbar__top
       floating: 0
       collapsed: 0
-      displayed: 0
+      displayed: 1
       snapOffset: {x: 0, y: 0}
-      snapOffsetDelta: {x: 0, y: 25}
+      snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: Scene View/Tilemap Focus
       index: 3
@@ -57122,17 +56221,17 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_WindowGUID: cc27987af1a868c49b0894db9c0f5429
   m_Gizmos: 1
-  m_OverrideSceneCullingMask: 0
-  m_SceneIsLit: 0
+  m_OverrideSceneCullingMask: 6917529027641081856
+  m_SceneIsLit: 1
   m_SceneLighting: 1
   m_2DMode: 1
   m_isRotationLocked: 0
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 962.6, y: 726.6715, z: 6.4222355}
+    m_Target: {x: -0.9824537, y: 0.8892999, z: 0.13463973}
     speed: 2
-    m_Value: {x: 0.3326224, y: -0.18444744, z: -9.931686}
+    m_Value: {x: -0.9824537, y: 0.8892999, z: 0.13463973}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -57144,7 +56243,7 @@ MonoBehaviour:
   m_SceneViewState:
     m_AlwaysRefresh: 0
     showFog: 1
-    showSkybox: 0
+    showSkybox: 1
     showFlares: 1
     showImageEffects: 1
     showParticleSystems: 1
@@ -57183,9 +56282,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 459.2301
+    m_Target: 1.9599715
     speed: 2
-    m_Value: 5.293213
+    m_Value: 1.9599715
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -57345,22 +56444,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Resources
+    - Assets/Scenes
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 81
   m_LastFolders:
-  - Assets/Resources
+  - Assets/Scenes
   m_LastFoldersGridSize: 81
   m_LastProjectPath: D:\Ueda Jinya\Documents\GitHub\DanmakuTPS
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 240}
-    m_SelectedIDs: 446c0000
-    m_LastClickedID: 27716
-    m_ExpandedIDs: 000000009c6700009e670000a0670000a2670000a4670000a6670000a8670000aa670000ac670000ae670000b0670000b2670000b4670000b6670000b8670000ba670000bc670000527e000000ca9a3b
+    scrollPos: {x: 0, y: 199}
+    m_SelectedIDs: 346a0000
+    m_LastClickedID: 27188
+    m_ExpandedIDs: 00000000a2680000a4680000a6680000a8680000aa680000ac680000ae680000b0680000b2680000b4680000b6680000b8680000ba680000bc680000be680000c0680000c2680000406a000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -57388,7 +56487,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000009c6700009e670000a0670000a2670000a4670000a6670000a8670000aa670000ac670000ae670000b0670000b2670000b4670000b6670000b8670000ba670000bc670000
+    m_ExpandedIDs: 00000000a2680000a4680000a6680000a8680000aa680000ac680000ae680000b0680000b2680000b4680000b6680000b8680000ba680000bc680000be680000c0680000c2680000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
