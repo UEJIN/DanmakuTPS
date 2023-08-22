@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
 using TMPro;
+using Photon.Realtime;
 
 public class TakingDamage : MonoBehaviourPunCallbacks
 {
@@ -20,12 +21,18 @@ public class TakingDamage : MonoBehaviourPunCallbacks
     AudioSource damageSound;
 
     // Start is called before the first frame update
+
+    private void Awake()
+    {
+        dieSound = GameObject.Find("KillSound").GetComponent<AudioSource>(); //シーンにあるオブジェクトを探し、コンポーネントを取得
+        damageSound = GameObject.Find("DamageSound").GetComponent<AudioSource>();
+    }
+
     void Start()
     {
         hp = startHp;
         hpBar.fillAmount = hp / startHp;
-        dieSound = GameObject.Find("KillSound").GetComponent<AudioSource>(); //シーンにあるオブジェクトを探し、コンポーネントを取得
-        damageSound = GameObject.Find("DamageSound").GetComponent<AudioSource>();
+
     }
     public void Update()
     {
@@ -40,15 +47,18 @@ public class TakingDamage : MonoBehaviourPunCallbacks
             {
                 timeCount = 0;
                 //Debug.Log("重病経過");
-                this.gameObject.GetComponent<PhotonView>().RPC("TakeDamage", RpcTarget.AllBuffered, 5f);
+                this.gameObject.GetComponent<PhotonView>().RPC("TakeDamage", RpcTarget.AllBufferedViaServer, 5f, PhotonNetwork.LocalPlayer.ActorNumber);
             }
         }
     }
 
 
     [PunRPC]
-    public void TakeDamage(float _damage, PhotonMessageInfo info) //Photonのもつinfoも渡す
+    public void TakeDamage(float _damage, int attackerID, PhotonMessageInfo info) //Photonのもつinfoも渡す
     {
+        //if (!PhotonNetwork.InRoom) { return; }  //
+        Debug.Log("call TakeDamage:damage="+ _damage+", sender="+ info.Sender.NickName);
+
         if (hp > 0f)
         {
 
@@ -64,9 +74,13 @@ public class TakingDamage : MonoBehaviourPunCallbacks
                     deadText.SetActive(true);
                     Die();
                     dieSound.Play(); //死亡のお知らせ音を再生
-                    if (photonView.IsMine)
+
+                    if (photonView.IsMine) //自分で読んだら
                     {
                         killText.GetComponent<TextMeshProUGUI>().text = "You were killed by " + info.Sender.NickName; //自分の画面にやられたことを表示
+                        //PhotonNetwork.LocalPlayer.AddScore(10);
+                        Player player = PhotonNetwork.LocalPlayer;
+                        player.Get(attackerID).AddScore(10);
                     }
                 }
             }

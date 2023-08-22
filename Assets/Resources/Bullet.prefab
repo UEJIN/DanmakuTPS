@@ -102,6 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   angle: 0
   speed: 0
+  ownerID: 0
 --- !u!114 &451575529806421526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,7 +119,7 @@ MonoBehaviour:
   Group: 0
   prefixField: -1
   Synchronization: 3
-  OwnershipTransfer: 0
+  OwnershipTransfer: 1
   observableSearch: 0
   ObservedComponents:
   - {fileID: 1858498884272527285}

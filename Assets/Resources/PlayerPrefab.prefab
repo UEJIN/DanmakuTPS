@@ -773,6 +773,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fpsCamera: {fileID: 1329437073441949296}
   shotBullet: {fileID: 1273474431921532874, guid: 0fe67501bc85fb945819aa74df44bcae, type: 3}
+  ownerID: 0
+  bullet_offline_prefab: {fileID: 7941306476910075066, guid: b33cd58421f05aa489dac4827ddf6590, type: 3}
 --- !u!114 &3199360917201111883
 MonoBehaviour:
   m_ObjectHideFlags: 0

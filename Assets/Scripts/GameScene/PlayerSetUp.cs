@@ -30,7 +30,7 @@ public class PlayerSetUp : MonoBehaviourPunCallbacks
         {
             transform.GetComponent<MovementController>().enabled = false;
             FPSCamera.GetComponent<Camera>().enabled = false;
-            transform.GetComponent<PlayerStatus>().enabled = false; //
+            //transform.GetComponent<PlayerStatus>().enabled = false; //
         }
 
         if (playerNameText != null) //Textオブジェクトが空でなければ

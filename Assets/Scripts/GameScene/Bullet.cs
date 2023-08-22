@@ -2,12 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using Photon.Realtime;
 
-public class Bullet : MonoBehaviour
-{
+public class Bullet : MonoBehaviourPunCallbacks
+{ 
     [SerializeField] float angle; // 角度
     [SerializeField] float speed; // 速度
     Vector3 velocity; // 移動量
+    [SerializeField] int ownerID;
+
+    
+    //いずれ弾に所有者の情報を持たせて同期は切りたい（プレイヤーのみ同期する。）
 
     void Start()
     {
@@ -23,6 +28,7 @@ public class Bullet : MonoBehaviour
 
         // 5秒後に削除
         Destroy(gameObject, 5.0f);
+
     }
     void Update()
     {
@@ -32,55 +38,64 @@ public class Bullet : MonoBehaviour
 
     // !!追加!!
     // 角度と速度を設定する関数
-    public void Init(float input_angle, float input_speed)
+    public void Init(float input_angle, float input_speed, int input_ownerID)
     {
         angle = input_angle;
         speed = input_speed;
+        ownerID = input_ownerID;
     }
 
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        //Debug.Log("衝突" + other.gameObject.name); //衝突したオブジェクトの名前を出力
 
-        //if (other.gameObject.tag == "Tilemap_holl")
-        //{
-        //    //Destroy(this.gameObject);
-        //    gameOverText.SetActive(true);
-        //}
-
-        //if (other.gameObject.tag == "Enemy")
-        //{
-        //    //Destroy(this.gameObject);
-        //    gameOverText.SetActive(true);
-        //}
-
-
-        //if (this.gameObject.GetComponent<PhotonView>().IsMine)
-        //{
-        //    if (other.gameObject.CompareTag("Player") && !other.gameObject.GetComponent<PhotonView>().IsMine)
-        //    //衝突したオブジェクトにPlayerタグ付けがあり、なおかつそれが自分のプレイヤーでない場合
-        //    {
-        //        Destroy(this.gameObject);
-        //        other.gameObject.GetComponent<PhotonView>().RPC("TakeDamage", RpcTarget.AllBuffered, 10f);
-        //        //RPCを介して、相手オブジェクトのメソッドを呼ぶ（10fというfloat値を渡す）
-
-        //    }
-        //}
-        if (!this.gameObject.GetComponent<PhotonView>().IsMine)　//相手の球が
+        if (PhotonNetwork.LocalPlayer.ActorNumber != ownerID)　//相手の球が
         {
             if (other.gameObject.CompareTag("Player") && other.gameObject.GetComponent<PhotonView>().IsMine)
             //衝突したオブジェクトにPlayerタグ付けがあり、なおかつそれが自分のプレイヤーの場合
             {
-                Destroy(this.gameObject);
-                other.gameObject.GetComponent<PhotonView>().RPC("TakeDamage", RpcTarget.AllBuffered, 10f);
                 //RPCを介して、自分のオブジェクトのメソッドを呼ぶ（10fというfloat値を渡す）
+                //other.gameObject.GetComponent<PhotonView>().RPC("TakeDamage", RpcTarget.AllBuffered, 10f, ownerID);
+                other.gameObject.GetComponent<PhotonView>().RPC("TakeDamage", RpcTarget.All, 10f, ownerID);
+
+                //もし
+
+                Debug.Log("被弾の所有者："+ ownerID);
+
+                //this.gameObject.GetComponent<PhotonView>().TransferOwnership(PhotonNetwork.LocalPlayer); //受けた側で削除するには所有権を貰う必要がある
+                //Destroy(this.gameObject);
 
             }
         }
 
 
+        //if (!(this.gameObject.GetComponent<PhotonView>().IsMine && other.gameObject.CompareTag("Player") && other.gameObject.GetComponent<PhotonView>().IsMine))//自分に自分の玉が当たった場合
+        //{
+        //    Destroy(this.gameObject);
+        //}
+
     }
 
+    //// IPunOwnershipCallbacks.OnOwnershipTransferedを実装
+    //void IPunOwnershipCallbacks.OnOwnershipTransfered(PhotonView targetView, Player previousOwner)
+    //{
+    //    // ネットワークオブジェクトを削除
+    //    if (targetView.IsMine)
+    //    {
+    //        PhotonNetwork.Destroy(targetView.gameObject);
+    //        Debug.Log("権限移譲");
+    //    }
+    //}
+
+    //// 以下のメソッドも実装しないとエラーが出る
+    //void IPunOwnershipCallbacks.OnOwnershipTransferFailed(PhotonView targetView, Player previousOwner)
+    //{
+    //    Debug.Log("権限移譲失敗");
+    //}
+
+    //void IPunOwnershipCallbacks.OnOwnershipRequest(PhotonView targetView, Player requestingPlayer)
+    //{
+
+    //}
 
 }

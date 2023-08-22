@@ -4,6 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class QuickStart : MonoBehaviourPunCallbacks
 {
@@ -11,6 +12,7 @@ public class QuickStart : MonoBehaviourPunCallbacks
     public TMP_InputField playerNameInput;
     public GameObject LoginPanel;
     public GameObject ConnectingPanel;
+    //[SerializeField] GameObject playerPrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +20,8 @@ public class QuickStart : MonoBehaviourPunCallbacks
         PhotonNetwork.AutomaticallySyncScene = true;
         LoginPanel.SetActive(true);
         ConnectingPanel.SetActive(false);
+        //SceneManager.sceneLoaded += OnLoadedScene;
+        //DontDestroyOnLoad(this.gameObject);
     }
 
     // Update is called once per frame
@@ -49,7 +53,9 @@ public class QuickStart : MonoBehaviourPunCallbacks
 
     public void JoinRandomRoom() //StatButtonで呼ぶ
     {
+
         PhotonNetwork.JoinRandomRoom();
+
     }
     #endregion
 
@@ -60,6 +66,7 @@ public class QuickStart : MonoBehaviourPunCallbacks
         Debug.Log(PhotonNetwork.NickName + "Connected to Photon server");
         //LobbyPanel.SetActive(true);
         ConnectingPanel.SetActive(false);
+        //PhotonNetwork.LoadLevel("GameScene"); //シーンをロード
         JoinRandomRoom();
 
     }
@@ -73,8 +80,34 @@ public class QuickStart : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom() //ルームに入ったら呼ばれる
     {
         Debug.Log(PhotonNetwork.NickName + "joined to" + PhotonNetwork.CurrentRoom.Name);
+        //PhotonNetwork.IsMessageQueueRunning = false;
         PhotonNetwork.LoadLevel("GameScene"); //シーンをロード
+        //PhotonNetwork.IsMessageQueueRunning = true;
+
+        //if (PhotonNetwork.IsConnected) //サーバーに接続していたら
+        //{
+
+        //    if (playerPrefab != null)
+        //    {
+        //        int randomPoint = Random.Range(-20, 20);
+        //        PhotonNetwork.Instantiate(playerPrefab.name, new Vector2(randomPoint, randomPoint), Quaternion.identity); //Photonを介した生成
+        //    }
+        //}
+
     }
+
+    //private void OnLoadedScene(Scene i_scene, LoadSceneMode i_mode)
+    //{
+    //    Debug.Log("OnLoadedScene");
+
+
+    //    //// シーンの遷移が完了したら自分用のオブジェクトを生成.
+    //    //if (i_scene.name == SCENE_NAME)
+    //    //{
+    //    //    Vector3 pos = Random.insideUnitCircle * m_randomCircle;
+    //    //    PhotonNetwork.Instantiate(m_resourcePath, pos, Quaternion.identity, 0);
+    //    //}
+    //}
 
     #endregion
 

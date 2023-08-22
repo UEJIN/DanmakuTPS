@@ -5,7 +5,7 @@ using UnityEngine;
 public class ItemManager : MonoBehaviour
 {
     Rigidbody2D itemRd2d;     //リジッドボディ型の変数を宣言
-    SpriteRenderer itemRenderer;    //SpriteRenderer型の変数を宣言
+    [SerializeField] SpriteRenderer itemRenderer;    //SpriteRenderer型の変数を宣言
     public Sprite[] sprites;        //アイテム画像を入れる配列を宣言
 
 
@@ -14,7 +14,7 @@ public class ItemManager : MonoBehaviour
         itemRd2d = GetComponent<Rigidbody2D>(); //
         itemRenderer = GetComponent<SpriteRenderer>();  //変数データを取得
         //int num = Random.Range(0, sprites.Length);
-        itemRenderer.sprite = sprites[Random.Range(0, sprites.Length)];           //0番目の画像を指定
+        //itemRenderer.sprite = sprites[Random.Range(0, sprites.Length)];           //0番目の画像を指定
 
         //int item = Random.Range(0, 100);                //Itemを乱数で決定
         //if (item < 30)                                  //乱数が30未満なら
@@ -41,5 +41,11 @@ public class ItemManager : MonoBehaviour
         //{
         //    itemRenderer.sprite = sprites[5];
         //}
+    }
+
+
+    public void Init(int input_itemID)
+    {
+        itemRenderer.sprite = sprites[input_itemID];
     }
 }
