@@ -48,6 +48,11 @@ public class Bullet : MonoBehaviourPunCallbacks
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.gameObject.CompareTag("Wall"))
+        {
+            Destroy(this.gameObject);
+        }
+        Debug.Log("otherF" +other);
 
         if (PhotonNetwork.LocalPlayer.ActorNumber != ownerID)@//‘Šè‚Ì‹…‚ª
         {

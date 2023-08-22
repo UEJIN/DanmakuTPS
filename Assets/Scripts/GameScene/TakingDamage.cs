@@ -30,6 +30,7 @@ public class TakingDamage : MonoBehaviourPunCallbacks
 
     void Start()
     {
+        
         hp = startHp;
         hpBar.fillAmount = hp / startHp;
 

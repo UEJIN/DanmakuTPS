@@ -64,7 +64,7 @@ public class Leaderboard : MonoBehaviour
             builder_Score.AppendLine($"{player.GetScore()}");
         }
 
-        for(int i = 0; i<players.Length;++i)
+        for(int i = 0; i<players.Length && i<=10; ++i)
         {
             gameObjects[i].GetComponent<TextMeshProUGUI>().text = players[i].NickName;
         }

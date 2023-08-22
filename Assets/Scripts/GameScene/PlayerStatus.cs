@@ -10,12 +10,13 @@ public class PlayerStatus : MonoBehaviourPunCallbacks //, IPunOwnershipCallbacks
     public int shotLv_circle;
     public int shotLv_random;
     AudioSource itemGetSound; //AudioSourceÇêÈåæ
-    //public string myName;
-
+    public float nowHP;
+    public float maxHP = 100;
 
     // Start is called before the first frame update
     void Start()
     {
+        
         shotLv_voltex = 0;
         shotLv_circle = 1;
         shotLv_random = 0;

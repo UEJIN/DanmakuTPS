@@ -790,6 +790,8 @@ MonoBehaviour:
   shotLv_voltex: 0
   shotLv_circle: 0
   shotLv_random: 0
+  nowHP: 0
+  maxHP: 0
 --- !u!1 &2580609652319133721
 GameObject:
   m_ObjectHideFlags: 0
