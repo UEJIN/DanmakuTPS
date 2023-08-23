@@ -15,6 +15,8 @@ public static class PlayerPropertiesExtensions
 
     private static readonly Hashtable propsToSet = new Hashtable();
 
+    
+    #region GetStatus
     // プレイヤーのスコアを取得する
     public static int GetScore(this Player player)
     {
@@ -27,6 +29,38 @@ public static class PlayerPropertiesExtensions
         return (player.CustomProperties[MessageKey] is string message) ? message : string.Empty;
     }
 
+    // プレイヤーのShotLv_voltexを取得する
+    public static int GetShotLv_voltex(this Player player)
+    {
+        return (player.CustomProperties[shotLv_voltex_Key] is int shotLv_voltex) ? shotLv_voltex : 0;
+    }
+
+    // プレイヤーのShotLv_voltexを取得する
+    public static int GetShotLv_circle(this Player player)
+    {
+        return (player.CustomProperties[shotLv_circle_Key] is int shotLv_circle) ? shotLv_circle : 0;
+    }
+
+    // プレイヤーのShotLv_voltexを取得する
+    public static int GetShotLv_random(this Player player)
+    {
+        return (player.CustomProperties[shotLv_random_Key] is int shotLv_random) ? shotLv_random : 0;
+    }
+
+    // プレイヤーのShotLv_voltexを取得する
+    public static float GetNowHP(this Player player)
+    {
+        return (player.CustomProperties[nowHP_Key] is float nowHP) ? nowHP : 100;
+    }
+
+    // プレイヤーのShotLv_voltexを取得する
+    public static int GetKillCount(this Player player)
+    {
+        return (player.CustomProperties[killCount_Key] is int killCount) ? killCount : 0;
+    }
+    #endregion
+
+    #region SetStatus
     // プレイヤーのスコアを設定する
     public static void SetScore(this Player player, int score)
     {
@@ -43,6 +77,54 @@ public static class PlayerPropertiesExtensions
         propsToSet.Clear();
     }
 
+    // プレイヤーのスコアを追加して設定する
+    public static void AddShotLv_voltex(this Player player, int addShotLv_voltex)
+    {
+        propsToSet[shotLv_voltex_Key] = player.GetShotLv_voltex() + addShotLv_voltex;
+        player.SetCustomProperties(propsToSet);
+        propsToSet.Clear();
+    }
+
+    // プレイヤーのスコアを追加して設定する
+    public static void AddShotLv_circle(this Player player, int addShotLv_circle)
+    {
+        propsToSet[shotLv_circle_Key] = player.GetShotLv_circle() + addShotLv_circle;
+        player.SetCustomProperties(propsToSet);
+        propsToSet.Clear();
+    }
+
+    // プレイヤーのスコアを追加して設定する
+    public static void AddShotLv_random(this Player player, int addShotLv_random)
+    {
+        propsToSet[shotLv_random_Key] = player.GetShotLv_random() + addShotLv_random;
+        player.SetCustomProperties(propsToSet);
+        propsToSet.Clear();
+    }
+
+    // プレイヤーのスコアを追加して設定する
+    public static void AddNowHP(this Player player, float addNowHP)
+    {
+        propsToSet[nowHP_Key] = player.GetNowHP() + addNowHP;
+        player.SetCustomProperties(propsToSet);
+        propsToSet.Clear();
+    }
+
+    // プレイヤーのスコアを追加して設定する
+    public static void SetNowHP(this Player player, float setNowHP)
+    {
+        propsToSet[nowHP_Key] = setNowHP;
+        player.SetCustomProperties(propsToSet);
+        propsToSet.Clear();
+    }
+
+    // プレイヤーのスコアを追加して設定する
+    public static void AddKillCount(this Player player, int addKillCount)
+    {
+        propsToSet[killCount_Key] = player.GetKillCount() + addKillCount;
+        player.SetCustomProperties(propsToSet);
+        propsToSet.Clear();
+    }
+
     // プレイヤーのメッセージを設定する
     public static void SetMessage(this Player player, string message)
     {
@@ -50,6 +132,7 @@ public static class PlayerPropertiesExtensions
         player.SetCustomProperties(propsToSet);
         propsToSet.Clear();
     }
+    #endregion
 
     //// プレイヤーのカスタムプロパティを送信する
     //public static void SendPlayerProperties(this Player player)

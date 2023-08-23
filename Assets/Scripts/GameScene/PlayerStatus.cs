@@ -1,25 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
+using ExitGames.Client.Photon;
+
 
 public class PlayerStatus : MonoBehaviourPunCallbacks //, IPunOwnershipCallbacks
 {
-    public int shotLv_voltex;
+    public int shotLv_voltex;//サーバーの値が変更されたらここを更新して保持しておく
     public int shotLv_circle;
     public int shotLv_random;
     AudioSource itemGetSound; //AudioSourceを宣言
     public float nowHP;
-    public float maxHP = 100;
+    public float maxHP;
+    [SerializeField] Image hpBar;
 
     // Start is called before the first frame update
     void Start()
     {
-        
-        shotLv_voltex = 0;
-        shotLv_circle = 1;
-        shotLv_random = 0;
+        //サーバーのデータを取得して初期化
+        shotLv_voltex = photonView.Owner.GetShotLv_voltex();
+        shotLv_circle = photonView.Owner.GetShotLv_circle();
+        shotLv_random = photonView.Owner.GetShotLv_random();
+        nowHP = photonView.Owner.GetNowHP();
+        maxHP = 100f;
+        hpBar.fillAmount = nowHP / maxHP;
         itemGetSound = GameObject.Find("ItemGetSound").GetComponent<AudioSource>(); //シーンにあるオブジェクトを探し、コンポーネントを取得
 
     }
@@ -34,16 +41,14 @@ public class PlayerStatus : MonoBehaviourPunCallbacks //, IPunOwnershipCallbacks
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        //if (collision.tag == "Enemy")   //記述済み
-        //{
-        //    SubHP(1);               //記述済み			
-        //}
 
         if (collision.tag == "Item")  //"Item"タグを持っていたら
         {
-
+            
+            if (photonView.IsMine) //このオブジェクトが自分ならば
+            {
+                itemGetSound.Play();
                 string name = collision.GetComponent<SpriteRenderer>().sprite.name; //Itemの名前を取得
-
 
                 if (name == collision.GetComponent<ItemManager>().sprites[0].name)
                 {
@@ -52,22 +57,16 @@ public class PlayerStatus : MonoBehaviourPunCallbacks //, IPunOwnershipCallbacks
                 }
                 if (name == collision.GetComponent<ItemManager>().sprites[1].name)
                 {
-                    shotLv_circle += 1;
+                    PhotonNetwork.LocalPlayer.AddShotLv_circle(1);
                 }
                 if (name == collision.GetComponent<ItemManager>().sprites[2].name)
                 {
-                    shotLv_voltex += 1;
+                    PhotonNetwork.LocalPlayer.AddShotLv_voltex(1);
                 }
                 if (name == collision.GetComponent<ItemManager>().sprites[3].name)
                 {
-                    shotLv_random += 1;
+                    PhotonNetwork.LocalPlayer.AddShotLv_random(1);
                 }
-
-            if (photonView.IsMine) //このオブジェクトが自分ならば
-            {
-                itemGetSound.Play();
-                //collision.gameObject.GetComponent<PhotonView>().TransferOwnership(PhotonNetwork.LocalPlayer); //受けた側で削除するには所有権を貰う必要がある
-
             }
 
             Destroy(collision.gameObject);      //Item削除
@@ -75,24 +74,46 @@ public class PlayerStatus : MonoBehaviourPunCallbacks //, IPunOwnershipCallbacks
         }
     }
 
-    //// IPunOwnershipCallbacks.OnOwnershipTransferedを実装
-    //void IPunOwnershipCallbacks.OnOwnershipTransfered(PhotonView targetView, Player previousOwner)
-    //{
-    //    // ネットワークオブジェクトを削除
 
-    //    PhotonNetwork.Destroy(targetView.gameObject);
-    //    Debug.Log("権限移譲");
-    //}
+    //誰かのカスタムプロパティ（ステータス）が変更されたら呼ばれる
+    public override void OnPlayerPropertiesUpdate(Player targetPlayer, ExitGames.Client.Photon.Hashtable changedProps)
+    {
+        // カスタムプロパティが更新されたプレイヤーのプレイヤー名とIDをコンソールに出力する
+        Debug.Log($"{targetPlayer.NickName}({targetPlayer.ActorNumber})");
 
-    //// 以下のメソッドも実装しないとエラーが出る
-    //void IPunOwnershipCallbacks.OnOwnershipTransferFailed(PhotonView targetView, Player previousOwner)
-    //{
-    //    Debug.Log("権限移譲失敗");
-    //}
+        // 更新されたプレイヤーのカスタムプロパティのペアをコンソールに出力する
+        foreach (var prop in changedProps)
+        {
+            Debug.Log($"{prop.Key}: {prop.Value}");
+        }
 
-    //void IPunOwnershipCallbacks.OnOwnershipRequest(PhotonView targetView, Player requestingPlayer)
-    //{
+        //このスクリプトがアタッチされたプレイヤーのスコアが更新されたら
+        if(targetPlayer == photonView.Owner)
+        {
+            Debug.Log("自分のステ更新");
 
-    //}
+            foreach (var prop in changedProps)
+            {
+                switch(prop.Key)
+                {
+                    case "s_v":
+                        shotLv_voltex = targetPlayer.GetShotLv_voltex();
+                        break;
+                    case "s_c":
+                        shotLv_circle = targetPlayer.GetShotLv_circle();
+                        break;
+                    case "s_r":
+                        shotLv_random = targetPlayer.GetShotLv_random();
+                        break;
+                    case "n_h":
+                        nowHP = targetPlayer.GetNowHP();
+                        hpBar.fillAmount = nowHP / maxHP;
+                        break;
 
+                }
+
+            }
+        }
+
+    }
 }

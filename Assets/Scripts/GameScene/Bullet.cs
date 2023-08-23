@@ -48,13 +48,16 @@ public class Bullet : MonoBehaviourPunCallbacks
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log("other：" + other);
+
+        //壁に当たると消える
         if (other.gameObject.CompareTag("Wall"))
         {
             Destroy(this.gameObject);
         }
-        Debug.Log("other：" +other);
-
-        if (PhotonNetwork.LocalPlayer.ActorNumber != ownerID)　//相手の球が
+        
+        //相手の球が
+        if (PhotonNetwork.LocalPlayer.ActorNumber != ownerID)　
         {
             if (other.gameObject.CompareTag("Player") && other.gameObject.GetComponent<PhotonView>().IsMine)
             //衝突したオブジェクトにPlayerタグ付けがあり、なおかつそれが自分のプレイヤーの場合
@@ -63,12 +66,7 @@ public class Bullet : MonoBehaviourPunCallbacks
                 //other.gameObject.GetComponent<PhotonView>().RPC("TakeDamage", RpcTarget.AllBuffered, 10f, ownerID);
                 other.gameObject.GetComponent<PhotonView>().RPC("TakeDamage", RpcTarget.All, 10f, ownerID);
 
-                //もし
-
                 Debug.Log("被弾の所有者："+ ownerID);
-
-                //this.gameObject.GetComponent<PhotonView>().TransferOwnership(PhotonNetwork.LocalPlayer); //受けた側で削除するには所有権を貰う必要がある
-                //Destroy(this.gameObject);
 
             }
         }

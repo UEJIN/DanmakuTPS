@@ -10,7 +10,8 @@ public class GameManager : MonoBehaviourPunCallbacks //Photon view‚âPun‚ðŽg—p‚·‚
     //GameObject itemObj;
     [SerializeField] GameObject itemParent;
     [SerializeField] TextMeshProUGUI timerText;
-
+    [SerializeField] public GameObject[] statusObjects;
+    [SerializeField] public GameObject killCountObject;
 
     // Start is called before the first frame update
     void Start()
@@ -41,5 +42,12 @@ public class GameManager : MonoBehaviourPunCallbacks //Photon view‚âPun‚ðŽg—p‚·‚
                 itemObj.transform.parent = itemParent.transform;
             }
         }
+
+        statusObjects[0].GetComponent<TextMeshProUGUI>().text = "SCORE : " + PhotonNetwork.LocalPlayer.GetScore().ToString();
+        statusObjects[1].GetComponent<TextMeshProUGUI>().text = "CIRCLE Shot Lv "+PhotonNetwork.LocalPlayer.GetShotLv_circle().ToString();
+        statusObjects[2].GetComponent<TextMeshProUGUI>().text = "VOLTEX Shot Lv "+PhotonNetwork.LocalPlayer.GetShotLv_voltex().ToString();
+        statusObjects[3].GetComponent<TextMeshProUGUI>().text = "RANDOM Shot Lv "+PhotonNetwork.LocalPlayer.GetShotLv_random().ToString();
+        killCountObject.GetComponent<TextMeshProUGUI>().text = PhotonNetwork.LocalPlayer.GetKillCount().ToString() + " Kill";
     }
+
 }

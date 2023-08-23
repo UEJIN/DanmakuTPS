@@ -753,11 +753,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7512773c648095c4c8ccc172dd5a1991, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hpBar: {fileID: 1922944663}
   deadText: {fileID: 2580609652319133721}
   killText: {fileID: 4920157856899488237}
   respawnText: {fileID: 8363151074570447308}
-  startHp: 100
   isInDamageZone: 0
 --- !u!114 &1516306647283544042
 MonoBehaviour:
@@ -792,6 +790,7 @@ MonoBehaviour:
   shotLv_random: 0
   nowHP: 0
   maxHP: 0
+  hpBar: {fileID: 1922944663}
 --- !u!1 &2580609652319133721
 GameObject:
   m_ObjectHideFlags: 0

@@ -4042,7 +4042,6 @@ MonoBehaviour:
   playerNameInput: {fileID: 1139942241}
   LoginPanel: {fileID: 2128402342}
   ConnectingPanel: {fileID: 1868025942}
-  playerPrefab: {fileID: 1329437075102129780, guid: 78c73f47f120ccc49b2fef7281fc4374, type: 3}
 --- !u!4 &1610495814
 Transform:
   m_ObjectHideFlags: 0

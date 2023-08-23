@@ -13,6 +13,7 @@ public class ItemManager : MonoBehaviour
     {
         itemRd2d = GetComponent<Rigidbody2D>(); //
         itemRenderer = GetComponent<SpriteRenderer>();  //変数データを取得
+
         //int num = Random.Range(0, sprites.Length);
         //itemRenderer.sprite = sprites[Random.Range(0, sprites.Length)];           //0番目の画像を指定
 
@@ -48,4 +49,17 @@ public class ItemManager : MonoBehaviour
     {
         itemRenderer.sprite = sprites[input_itemID];
     }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        //Debug.Log("other：" + other);
+
+        //壁に当たると消える
+        if (other.gameObject.CompareTag("Wall"))
+        {
+            Destroy(this.gameObject);
+        }
+
+    }
+
 }

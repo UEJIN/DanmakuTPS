@@ -8,13 +8,13 @@ using Photon.Realtime;
 
 public class TakingDamage : MonoBehaviourPunCallbacks
 {
-    [SerializeField] Image hpBar;
+    //[SerializeField] Image hpBar;
     [SerializeField] GameObject deadText; //Inspectorから紐づけ
     [SerializeField] TextMeshProUGUI killText; //Inspectorから紐づけ
     [SerializeField] TextMeshProUGUI respawnText; //Inspectorから紐づけ
 
     private float hp;
-    public float startHp = 100;
+    private float startHp ;
     public bool isInDamageZone = false;
     float timeCount = 0; // 経過時間
     AudioSource dieSound; //AudioSourceを宣言
@@ -31,8 +31,8 @@ public class TakingDamage : MonoBehaviourPunCallbacks
     void Start()
     {
         
-        hp = startHp;
-        hpBar.fillAmount = hp / startHp;
+        //hp = photonView.Owner.GetNowHP();
+        //hpBar.fillAmount = hp / startHp;
 
     }
     public void Update()
@@ -48,7 +48,7 @@ public class TakingDamage : MonoBehaviourPunCallbacks
             {
                 timeCount = 0;
                 //Debug.Log("重病経過");
-                this.gameObject.GetComponent<PhotonView>().RPC("TakeDamage", RpcTarget.AllBufferedViaServer, 5f, PhotonNetwork.LocalPlayer.ActorNumber);
+                this.gameObject.GetComponent<PhotonView>().RPC("TakeDamage", RpcTarget.All, 5f, PhotonNetwork.LocalPlayer.ActorNumber);
             }
         }
     }
@@ -59,6 +59,10 @@ public class TakingDamage : MonoBehaviourPunCallbacks
     {
         //if (!PhotonNetwork.InRoom) { return; }  //
         Debug.Log("call TakeDamage:damage="+ _damage+", sender="+ info.Sender.NickName);
+        
+        //現状のHPを取得
+        hp = this.gameObject.GetComponent<PlayerStatus>().nowHP;
+        startHp = this.gameObject.GetComponent<PlayerStatus>().maxHP;
 
         if (hp > 0f)
         {
@@ -66,22 +70,32 @@ public class TakingDamage : MonoBehaviourPunCallbacks
             if (_damage > 0)　　//ダメージ処理
             {
                 hp -= _damage;
-                hpBar.fillAmount = hp / startHp;
-
-                damageSound.Play();
+                //hpBar.fillAmount = hp / startHp;
 
                 if (hp <= 0f)　　//死んだら
                 {
+
                     deadText.SetActive(true);
-                    Die();
                     dieSound.Play(); //死亡のお知らせ音を再生
 
                     if (photonView.IsMine) //自分で読んだら
                     {
+                        PhotonNetwork.LocalPlayer.SetNowHP(0);
+
                         killText.GetComponent<TextMeshProUGUI>().text = "You were killed by " + info.Sender.NickName; //自分の画面にやられたことを表示
                         //PhotonNetwork.LocalPlayer.AddScore(10);
                         Player player = PhotonNetwork.LocalPlayer;
                         player.Get(attackerID).AddScore(10);
+                        player.Get(attackerID).AddKillCount(1);
+                        Die();
+                    }
+                }
+                else
+                {
+                    damageSound.Play();
+                    if (photonView.IsMine) //自分で読んだら
+                    {
+                        PhotonNetwork.LocalPlayer.SetNowHP(hp);
                     }
                 }
             }
@@ -90,12 +104,14 @@ public class TakingDamage : MonoBehaviourPunCallbacks
                 if (hp - _damage > startHp)
                 {
                     hp = startHp;       //上限以上は回復しない
-                    hpBar.fillAmount = hp / startHp;
+                    PhotonNetwork.LocalPlayer.SetNowHP(hp);
+                    //hpBar.fillAmount = hp / startHp;
                 }
                 if(hp - _damage <= startHp)
                 {
                     hp -= _damage;
-                    hpBar.fillAmount = hp / startHp;
+                    PhotonNetwork.LocalPlayer.SetNowHP(hp);
+                    //hpBar.fillAmount = hp / startHp;
                 }
                 
             }
@@ -135,8 +151,18 @@ public class TakingDamage : MonoBehaviourPunCallbacks
     [PunRPC]
     public void RegainHP()
     {
-        hp = startHp; //回復
-        hpBar.fillAmount = hp / startHp; //HPBarに反映
+        //hp = startHp; //回復
+        //hpBar.fillAmount = hp / startHp; //HPBarに反映
+        if (photonView.IsMine) //自分で読んだら
+        {
+            //ステータスリセット
+            PhotonNetwork.LocalPlayer.AddShotLv_voltex(- PhotonNetwork.LocalPlayer.GetShotLv_voltex());
+            PhotonNetwork.LocalPlayer.AddShotLv_circle(- PhotonNetwork.LocalPlayer.GetShotLv_circle());
+            PhotonNetwork.LocalPlayer.AddShotLv_random(- PhotonNetwork.LocalPlayer.GetShotLv_random());
+            PhotonNetwork.LocalPlayer.AddKillCount(-PhotonNetwork.LocalPlayer.GetKillCount());
+            PhotonNetwork.LocalPlayer.SetNowHP(startHp);
+            PhotonNetwork.LocalPlayer.SetScore(0);
+        }
         deadText.SetActive(false); //死亡非表示
     }
 }
