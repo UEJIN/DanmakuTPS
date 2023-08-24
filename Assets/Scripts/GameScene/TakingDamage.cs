@@ -123,7 +123,42 @@ public class TakingDamage : MonoBehaviourPunCallbacks
     {
         if (photonView.IsMine)
         {
-           StartCoroutine(Respawn());
+ 
+            int i = 0;
+            while (i < PhotonNetwork.LocalPlayer.GetShotLv_voltex()) //0になるまで繰り返す
+            {
+                GameObject itemObj = PhotonNetwork.Instantiate("Item", new Vector2(transform.localPosition.x + CircleHorizon(1f, 2.0f).x, transform.localPosition.y + CircleHorizon(1f, 2.0f).y), Quaternion.identity);
+                ItemManager itemManager = itemObj.GetComponent<ItemManager>();
+                itemManager.Init(1);
+
+                //itemObj.transform.parent = GameManager.itemParent.transform;
+                i++;
+            }
+
+            i = 0;
+
+            while (i < PhotonNetwork.LocalPlayer.GetShotLv_circle()) //0になるまで繰り返す
+            {
+                GameObject itemObj = PhotonNetwork.Instantiate("Item", new Vector2(transform.localPosition.x + CircleHorizon(1f, 2.0f).x, transform.localPosition.y + CircleHorizon(1f, 2.0f).y), Quaternion.identity);
+                ItemManager itemManager = itemObj.GetComponent<ItemManager>();
+                itemManager.Init(2);
+                //itemObj.transform.parent = itemParent.transform;
+                i++;
+            }
+
+            i = 0;
+
+            while (i < PhotonNetwork.LocalPlayer.GetShotLv_random()) //0になるまで繰り返す
+            {
+                GameObject itemObj = PhotonNetwork.Instantiate("Item", new Vector2(transform.localPosition.x + CircleHorizon(1f, 2.0f).x, transform.localPosition.y + CircleHorizon(1f, 2.0f).y), Quaternion.identity);
+                ItemManager itemManager = itemObj.GetComponent<ItemManager>();
+                itemManager.Init(3);
+                //itemObj.transform.parent = itemParent.transform;
+                i++;
+            }
+            i = 0;
+
+            StartCoroutine(Respawn());
         }
     }
 
@@ -140,8 +175,8 @@ public class TakingDamage : MonoBehaviourPunCallbacks
         }
         killText.GetComponent<TextMeshProUGUI>().text = "";
         respawnText.GetComponent<TextMeshProUGUI>().text = "";
-        int randomPoint = Random.Range(-20, 20);
-        transform.position = new Vector3(randomPoint, randomPoint, 0); //ランダムな場所へ移動
+        //int randomPoint = Random.Range(-20, 20);
+        transform.position = new Vector3(Random.Range(-20, 20), Random.Range(-20, 20), 0); //ランダムな場所へ移動
         transform.GetComponent<MovementController>().enabled = true; //動ける状態
         transform.GetComponent<Shoot>().enabled = true; //撃てる状態
         photonView.RPC("RegainHP", RpcTarget.AllBuffered); //RPCでメソッドを呼ぶ
@@ -155,6 +190,8 @@ public class TakingDamage : MonoBehaviourPunCallbacks
         //hpBar.fillAmount = hp / startHp; //HPBarに反映
         if (photonView.IsMine) //自分で読んだら
         {
+            
+            
             //ステータスリセット
             PhotonNetwork.LocalPlayer.AddShotLv_voltex(- PhotonNetwork.LocalPlayer.GetShotLv_voltex());
             PhotonNetwork.LocalPlayer.AddShotLv_circle(- PhotonNetwork.LocalPlayer.GetShotLv_circle());
@@ -164,5 +201,16 @@ public class TakingDamage : MonoBehaviourPunCallbacks
             PhotonNetwork.LocalPlayer.SetScore(0);
         }
         deadText.SetActive(false); //死亡非表示
+    }
+
+    public Vector3 CircleHorizon(float min, float max)
+    {
+
+        var angle = Random.Range(0, 360);
+        var radius = Random.Range(min, max);
+        var rad = angle * Mathf.Deg2Rad;
+        var px = Mathf.Cos(rad) * radius;
+        var py = Mathf.Sin(rad) * radius;
+        return new Vector3(px, py, 0);
     }
 }

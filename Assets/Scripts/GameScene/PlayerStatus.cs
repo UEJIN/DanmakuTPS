@@ -37,6 +37,24 @@ public class PlayerStatus : MonoBehaviourPunCallbacks //, IPunOwnershipCallbacks
         Debug.Log("shotLv_voltex=" + shotLv_voltex);
         Debug.Log("shotLv_circle=" + shotLv_circle);
         Debug.Log("shotLv_random=" + shotLv_random);
+        if (photonView.IsMine) //このオブジェクトが自分ならば
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                PhotonNetwork.LocalPlayer.AddScore(10);
+                PhotonNetwork.LocalPlayer.AddShotLv_circle(1);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                PhotonNetwork.LocalPlayer.AddScore(10);
+                PhotonNetwork.LocalPlayer.AddShotLv_voltex(1);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                PhotonNetwork.LocalPlayer.AddScore(10);
+                PhotonNetwork.LocalPlayer.AddShotLv_random(1);
+            }
+        }
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -49,6 +67,9 @@ public class PlayerStatus : MonoBehaviourPunCallbacks //, IPunOwnershipCallbacks
             {
                 itemGetSound.Play();
                 string name = collision.GetComponent<SpriteRenderer>().sprite.name; //Itemの名前を取得
+
+                //アイテム取るたびスコア10アップ
+                PhotonNetwork.LocalPlayer.AddScore(10);
 
                 if (name == collision.GetComponent<ItemManager>().sprites[0].name)
                 {
@@ -87,10 +108,10 @@ public class PlayerStatus : MonoBehaviourPunCallbacks //, IPunOwnershipCallbacks
             Debug.Log($"{prop.Key}: {prop.Value}");
         }
 
-        //このスクリプトがアタッチされたプレイヤーのスコアが更新されたら
+        //このスクリプトがアタッチされたプレイヤーが更新されたら
         if(targetPlayer == photonView.Owner)
         {
-            Debug.Log("自分のステ更新");
+
 
             foreach (var prop in changedProps)
             {

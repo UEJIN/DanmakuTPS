@@ -34,18 +34,7 @@ public class Shoot : MonoBehaviourPunCallbacks
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            transform.GetComponent<PlayerStatus>().shotLv_circle += 1;
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            transform.GetComponent<PlayerStatus>().shotLv_voltex += 1;
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            transform.GetComponent<PlayerStatus>().shotLv_random += 1;
-        }
+
 
         // ‘OƒtƒŒ[ƒ€‚©‚ç‚ÌŠÔ‚Ì·‚ğ‰ÁZ
         timeCount_voltex += Time.deltaTime;

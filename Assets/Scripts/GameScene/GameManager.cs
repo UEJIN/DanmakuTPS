@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviourPunCallbacks //Photon view‚âPun‚ðŽg—p‚·‚
 {
     [SerializeField] GameObject playerPrefab;
     //GameObject itemObj;
-    [SerializeField] GameObject itemParent;
+    [SerializeField] public GameObject itemParent;
     [SerializeField] TextMeshProUGUI timerText;
     [SerializeField] public GameObject[] statusObjects;
     [SerializeField] public GameObject killCountObject;
@@ -49,5 +49,15 @@ public class GameManager : MonoBehaviourPunCallbacks //Photon view‚âPun‚ðŽg—p‚·‚
         statusObjects[3].GetComponent<TextMeshProUGUI>().text = "RANDOM Shot Lv "+PhotonNetwork.LocalPlayer.GetShotLv_random().ToString();
         killCountObject.GetComponent<TextMeshProUGUI>().text = PhotonNetwork.LocalPlayer.GetKillCount().ToString() + " Kill";
     }
+
+
+    //[PunRPC]
+    //public void ItemSpawn(int itemID, Vector2 vector2)
+    //{
+    //    GameObject itemObj = PhotonNetwork.Instantiate("Item", vector2, Quaternion.identity);
+    //    ItemManager itemManager = itemObj.GetComponent<ItemManager>();
+    //    itemManager.Init(itemID);
+    //    itemObj.transform.parent = itemParent.transform;
+    //}
 
 }
