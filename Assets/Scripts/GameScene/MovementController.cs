@@ -8,10 +8,11 @@ public class MovementController : MonoBehaviour
     private Rigidbody2D rb;
     // 自機の移動速度を格納する変数（初期値 5）
     public float speed = 5;
-
+    public float slowSpeed = 2;
     private Vector2 velocity = Vector2.zero; //初期値ゼロ
 
     private VariableJoystick variableJoystick;
+    private ButtonState buttonState;
 
     // ゲームのスタート時の処理
     void Start()
@@ -20,6 +21,9 @@ public class MovementController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         variableJoystick = GameObject.Find("Variable Joystick").GetComponent<VariableJoystick>();
+        buttonState = GameObject.Find("SlowButton").GetComponent<ButtonState>();
+        
+
 
     }
 
@@ -37,6 +41,16 @@ public class MovementController : MonoBehaviour
         // Rigidbody2D コンポーネントの velocity に方向と移動速度を掛けた値を渡す
         //rb.velocity = direction * speed;
         velocity = direction * speed;
+
+        if (buttonState.IsPressed() || Input.GetKey(KeyCode.LeftShift))
+        {
+            speed = slowSpeed;
+        }
+        else
+        {
+            speed = 5;
+        }
+
     }
 
     private void FixedUpdate()
