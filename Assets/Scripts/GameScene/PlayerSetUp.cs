@@ -7,16 +7,16 @@ using TMPro;
 public class PlayerSetUp : MonoBehaviourPunCallbacks
 {
 
-    [SerializeField] GameObject FPSCamera;
+    [SerializeField] public GameObject FPSCamera;
     //[SerializeField] Text playerNameText;
-    [SerializeField] TextMeshProUGUI playerNameText;
-    [SerializeField] GameObject miniMapMarker;
+    [SerializeField] public TextMeshProUGUI playerNameText;
+    [SerializeField] public GameObject miniMapMarker;
     //AudioSource itemGetSound; //AudioSourceを宣言
 
     // Start is called before the first frame update
     void Start()
     {
-        if (photonView.IsMine) //このオブジェクトが自分がPhotonを介して生成したものならば
+        if (photonView.Owner.IsLocal && playerNameText.text != "NPC") //このオブジェクトが自分ならば
         {
             transform.GetComponent<MovementController>().enabled = true; //MovementController.csを有効にする
             FPSCamera.GetComponent<Camera>().enabled = true; //FPSCameraのCameraコンポーネントを有効にする
@@ -33,7 +33,7 @@ public class PlayerSetUp : MonoBehaviourPunCallbacks
             //transform.GetComponent<PlayerStatus>().enabled = false; //
         }
 
-        if (playerNameText != null) //Textオブジェクトが空でなければ
+        if (playerNameText != null && this.gameObject.tag == "Player") //Textオブジェクトが空でなければ
         {
             playerNameText.text = photonView.Owner.NickName; //ログインした名前を代入
         }

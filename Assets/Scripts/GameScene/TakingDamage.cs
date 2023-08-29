@@ -80,22 +80,52 @@ public class TakingDamage : MonoBehaviourPunCallbacks
 
                     if (photonView.IsMine) //自分で読んだら
                     {
-                        PhotonNetwork.LocalPlayer.SetNowHP(0);
+                        if (this.gameObject.tag == "Player") //ダメージ食らうのが自プレイヤーなら
+                        {
+                            PhotonNetwork.LocalPlayer.SetNowHP(0);
+                            killText.GetComponent<TextMeshProUGUI>().text = "You were killed by " + info.Sender.NickName; //自分の画面にやられたことを表示
+                                                                                                                          //PhotonNetwork.LocalPlayer.AddScore(10);
+                        }
+                        else  //ダメージ食らうのがNPCなら
+                        {
+                            this.gameObject.GetComponent<PlayerStatus>().nowHP = 0;
+                            this.gameObject.GetComponent<PlayerStatus>().hpBar.fillAmount = this.gameObject.GetComponent<PlayerStatus>().nowHP / this.gameObject.GetComponent<PlayerStatus>().maxHP;
+                        }                            
+                        
+                        if (attackerID != 0) //NPCからの攻撃じゃなかったらスコア処理
+                        {
+                            Player player = PhotonNetwork.LocalPlayer;
+                            player.Get(attackerID).AddScore(50); //攻撃した人にスコア
+                            player.Get(attackerID).AddKillCount(1); //攻撃した人にキル+1
 
-                        killText.GetComponent<TextMeshProUGUI>().text = "You were killed by " + info.Sender.NickName; //自分の画面にやられたことを表示
-                        //PhotonNetwork.LocalPlayer.AddScore(10);
-                        Player player = PhotonNetwork.LocalPlayer;
-                        player.Get(attackerID).AddScore(10);
-                        player.Get(attackerID).AddKillCount(1);
+                            if(player.Get(attackerID).GetNowHP() + 50 > 100) //HP50足して100超えるなら
+                            {
+                                player.Get(attackerID).SetNowHP(100); //100にする
+                            }
+                            else
+                            {
+                                player.Get(attackerID).AddNowHP(50);　//50回復
+                            }
+                        }
+
                         Die();
                     }
                 }
-                else
+                else　//死ななかったら
                 {
                     damageSound.Play();
-                    if (photonView.IsMine) //自分で読んだら
+
+                    if (this.gameObject.tag == "Player")
                     {
-                        PhotonNetwork.LocalPlayer.SetNowHP(hp);
+                        if (photonView.IsMine) //自分で読んだら
+                        {
+                            PhotonNetwork.LocalPlayer.SetNowHP(hp);
+                        }
+                    }
+                    else
+                    {
+                        this.gameObject.GetComponent<PlayerStatus>().nowHP = hp;
+                        this.gameObject.GetComponent<PlayerStatus>().hpBar.fillAmount = this.gameObject.GetComponent<PlayerStatus>().nowHP / this.gameObject.GetComponent<PlayerStatus>().maxHP;
                     }
                 }
             }
@@ -158,7 +188,14 @@ public class TakingDamage : MonoBehaviourPunCallbacks
             }
             i = 0;
 
-            StartCoroutine(Respawn());
+            if (this.gameObject.tag == "Player")
+            {
+                StartCoroutine(Respawn());
+            }
+            else
+            {
+                Destroy(this.gameObject);
+            }
         }
     }
 

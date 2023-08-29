@@ -71,6 +71,13 @@ public class Bullet : MonoBehaviourPunCallbacks
             }
         }
 
+        //NPCˆÈŠO‚Ì‚½‚Ü‚ªNPC‚É“–‚½‚é‚Æ
+        if (ownerID != 0 && other.gameObject.CompareTag("Enemy"))
+        {
+            other.gameObject.GetComponent<PhotonView>().RPC("TakeDamage", RpcTarget.All, 10f, ownerID);
+            //Destroy(this.gameObject);
+        }
+
 
         //if (!(this.gameObject.GetComponent<PhotonView>().IsMine && other.gameObject.CompareTag("Player") && other.gameObject.GetComponent<PhotonView>().IsMine))//©•ª‚É©•ª‚Ì‹Ê‚ª“–‚½‚Á‚½ê‡
         //{

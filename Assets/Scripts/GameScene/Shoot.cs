@@ -26,7 +26,15 @@ public class Shoot : MonoBehaviourPunCallbacks
 
     void Start()
     {
-        ownerID = photonView.Owner.ActorNumber;
+        //玉の所有者のID
+        if (this.gameObject.tag == "Player")
+        {
+            ownerID = photonView.Owner.ActorNumber;
+        }
+        else
+        {
+            ownerID = 0; //Enemyなら0にしとく
+        }
         Debug.Log("shoot owner ID = " + ownerID);
     }
 
@@ -149,8 +157,8 @@ public class Shoot : MonoBehaviourPunCallbacks
             //渦巻き
             if (transform.GetComponent<PlayerStatus>().shotLv_voltex > 0)
             {
-
-                switch (transform.GetComponent<PlayerStatus>().shotLv_voltex)
+            float shot_voltex_speed = 2;
+            switch (transform.GetComponent<PlayerStatus>().shotLv_voltex)
                 {
                     case 1:
                         //1way uzumaki
@@ -158,7 +166,7 @@ public class Shoot : MonoBehaviourPunCallbacks
                         {
                             timeCount_voltex = 0;   
                             shotAngle += 20;
-                            InstBullet(shotAngle, transform.position, 6);
+                            InstBullet(shotAngle, transform.position, shot_voltex_speed);
                         }
                         break;
 
@@ -168,8 +176,8 @@ public class Shoot : MonoBehaviourPunCallbacks
                         {
                             timeCount_voltex = 0; 
                             shotAngle += 20;
-                            InstBullet(shotAngle, transform.position, 6);
-                            InstBullet(shotAngle + 180, transform.position, 6);
+                            InstBullet(shotAngle, transform.position, shot_voltex_speed);
+                            InstBullet(shotAngle + 180, transform.position, shot_voltex_speed);
                         }
                         break;
 
@@ -179,9 +187,9 @@ public class Shoot : MonoBehaviourPunCallbacks
                         {
                             timeCount_voltex = 0;
                             shotAngle += 20;
-                            InstBullet(shotAngle, transform.position, 6);
-                            InstBullet(shotAngle + 120, transform.position, 6);
-                            InstBullet(shotAngle + 240, transform.position, 6);
+                            InstBullet(shotAngle, transform.position, shot_voltex_speed);
+                            InstBullet(shotAngle + 120, transform.position, shot_voltex_speed);
+                            InstBullet(shotAngle + 240, transform.position, shot_voltex_speed);
                         }
                         break;
 
@@ -191,10 +199,10 @@ public class Shoot : MonoBehaviourPunCallbacks
                         {
                             timeCount_voltex = 0; 
                             shotAngle += 20;
-                            InstBullet(shotAngle, transform.position, 6);
-                            InstBullet(shotAngle + 90, transform.position, 6);
-                            InstBullet(shotAngle + 180, transform.position, 6);
-                            InstBullet(shotAngle + 270, transform.position, 6);
+                            InstBullet(shotAngle, transform.position, shot_voltex_speed);
+                            InstBullet(shotAngle + 90, transform.position, shot_voltex_speed);
+                            InstBullet(shotAngle + 180, transform.position, shot_voltex_speed);
+                            InstBullet(shotAngle + 270, transform.position, shot_voltex_speed);
                         }
                         break;
 
@@ -204,10 +212,10 @@ public class Shoot : MonoBehaviourPunCallbacks
                         {
                             timeCount_voltex = 0; 
                             shotAngle += 20;
-                            InstBullet(shotAngle, transform.position, 6);
-                            InstBullet(shotAngle + 90, transform.position, 6);
-                            InstBullet(shotAngle + 180, transform.position, 6);
-                            InstBullet(shotAngle + 270, transform.position, 6);
+                            InstBullet(shotAngle, transform.position, shot_voltex_speed);
+                            InstBullet(shotAngle + 90, transform.position, shot_voltex_speed);
+                            InstBullet(shotAngle + 180, transform.position, shot_voltex_speed);
+                            InstBullet(shotAngle + 270, transform.position, shot_voltex_speed);
                         }
                         break;
 
@@ -217,6 +225,7 @@ public class Shoot : MonoBehaviourPunCallbacks
             //ランダム
             if (transform.GetComponent<PlayerStatus>().shotLv_random > 0)
             {
+            float shot_random_speed = 4;
 
                 switch (transform.GetComponent<PlayerStatus>().shotLv_random)
                 {
@@ -225,8 +234,8 @@ public class Shoot : MonoBehaviourPunCallbacks
                         if (timeCount_random > 0.5f)
                         {
                             timeCount_random = 0; 
-                            InstBullet(Random.Range(0, 360), transform.position, 8);
-                            InstBullet(Random.Range(0, 360), transform.position, 8);
+                            InstBullet(Random.Range(0, 360), transform.position, shot_random_speed);
+                            InstBullet(Random.Range(0, 360), transform.position, shot_random_speed);
                         }
                         break;
 
@@ -234,9 +243,9 @@ public class Shoot : MonoBehaviourPunCallbacks
                         if (timeCount_random > 0.5f)
                         {
                             timeCount_random = 0;
-                            InstBullet(Random.Range(0, 360), transform.position, 8);
-                            InstBullet(Random.Range(0, 360), transform.position, 8);
-                            InstBullet(Random.Range(0, 360), transform.position, 8);
+                            InstBullet(Random.Range(0, 360), transform.position, shot_random_speed);
+                            InstBullet(Random.Range(0, 360), transform.position, shot_random_speed);
+                            InstBullet(Random.Range(0, 360), transform.position, shot_random_speed);
                         }
                         break;
 
@@ -244,10 +253,10 @@ public class Shoot : MonoBehaviourPunCallbacks
                         if (timeCount_random > 0.5f)
                         {
                             timeCount_random = 0;
-                            InstBullet(Random.Range(0, 360), transform.position, 8);
-                            InstBullet(Random.Range(0, 360), transform.position, 8);
-                            InstBullet(Random.Range(0, 360), transform.position, 8);
-                            InstBullet(Random.Range(0, 360), transform.position, 8);
+                            InstBullet(Random.Range(0, 360), transform.position, shot_random_speed);
+                            InstBullet(Random.Range(0, 360), transform.position, shot_random_speed);
+                            InstBullet(Random.Range(0, 360), transform.position, shot_random_speed);
+                            InstBullet(Random.Range(0, 360), transform.position, shot_random_speed);
                         }
                         break;
 
@@ -255,11 +264,11 @@ public class Shoot : MonoBehaviourPunCallbacks
                         if (timeCount_random > 0.5f)
                         {
                             timeCount_random = 0;
-                            InstBullet(Random.Range(0, 360), transform.position, 8);
-                            InstBullet(Random.Range(0, 360), transform.position, 8);
-                            InstBullet(Random.Range(0, 360), transform.position, 8);
-                            InstBullet(Random.Range(0, 360), transform.position, 8);
-                            InstBullet(Random.Range(0, 360), transform.position, 8);
+                            InstBullet(Random.Range(0, 360), transform.position, shot_random_speed);
+                            InstBullet(Random.Range(0, 360), transform.position, shot_random_speed);
+                            InstBullet(Random.Range(0, 360), transform.position, shot_random_speed);
+                            InstBullet(Random.Range(0, 360), transform.position, shot_random_speed);
+                            InstBullet(Random.Range(0, 360), transform.position, shot_random_speed);
                         }
                         break;
 
@@ -267,11 +276,11 @@ public class Shoot : MonoBehaviourPunCallbacks
                         if (timeCount_random > 0.5f)
                         {
                             timeCount_random = 0; 
-                            InstBullet(Random.Range(0, 360), transform.position, 8);
-                            InstBullet(Random.Range(0, 360), transform.position, 8);
-                            InstBullet(Random.Range(0, 360), transform.position, 8);
-                            InstBullet(Random.Range(0, 360), transform.position, 8);
-                            InstBullet(Random.Range(0, 360), transform.position, 8);
+                            InstBullet(Random.Range(0, 360), transform.position, shot_random_speed);
+                            InstBullet(Random.Range(0, 360), transform.position, shot_random_speed);
+                            InstBullet(Random.Range(0, 360), transform.position, shot_random_speed);
+                            InstBullet(Random.Range(0, 360), transform.position, shot_random_speed);
+                            InstBullet(Random.Range(0, 360), transform.position, shot_random_speed);
                         }
                         break;
 
@@ -313,7 +322,7 @@ public class Shoot : MonoBehaviourPunCallbacks
         // BulletスクリプトのInitを呼び出す
         bulletScript.Init(shotAngle, shotSpeed, ownerID);
 
-        if (this.gameObject.GetComponent<PhotonView>().IsMine)
+        if (this.gameObject.GetComponent<PhotonView>().IsMine && this.gameObject.tag == "Player")
         {
             //自分の攻撃の色を変える
             createObject.GetComponent<SpriteRenderer>().color = new Color(107, 162, 255);

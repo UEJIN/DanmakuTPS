@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviourPunCallbacks //Photon view‚âPun‚ğg—p‚·‚
     [SerializeField] TextMeshProUGUI timerText;
     [SerializeField] public GameObject[] statusObjects;
     [SerializeField] public GameObject killCountObject;
+    [SerializeField] public GameObject npcParent;
 
     // Start is called before the first frame update
     void Start()
@@ -32,8 +33,10 @@ public class GameManager : MonoBehaviourPunCallbacks //Photon view‚âPun‚ğg—p‚·‚
     {
         timerText.text = Time.time.ToString("0.0");
 
+        //ƒzƒXƒg‚È‚ç
         if (PhotonNetwork.IsMasterClient)
         {
+            //ƒtƒB[ƒ‹ƒh‚ÌƒAƒCƒeƒ€‚ª5‚±ˆÈ‰º‚È‚çƒ‰ƒ“ƒ_ƒ€ƒXƒ|[ƒ“
             if (itemParent.transform.childCount < 5)
             {
                 GameObject itemObj = PhotonNetwork.Instantiate("Item", new Vector2(Random.Range(-20, 20), Random.Range(-20, 20)), Quaternion.identity);
@@ -41,6 +44,28 @@ public class GameManager : MonoBehaviourPunCallbacks //Photon view‚âPun‚ğg—p‚·‚
                 itemManager.Init(Random.Range(0, itemManager.sprites.Length));
                 itemObj.transform.parent = itemParent.transform;
             }
+
+            //ƒvƒŒƒCƒ„[”‚ª‚TˆÈ‰º‚È‚çNPCƒXƒ|[ƒ“
+            if(npcParent.transform.childCount + PhotonNetwork.PlayerList.Length < 10)
+            {
+                GameObject npc = PhotonNetwork.InstantiateRoomObject(playerPrefab.name, new Vector2(Random.Range(-20, 20), Random.Range(-20, 20)), Quaternion.identity);
+                npc.tag = "Enemy";
+
+                PlayerSetUp playerSetUp = npc.GetComponent<PlayerSetUp>();
+                playerSetUp.transform.GetComponent<MovementController>().enabled = false;
+                playerSetUp.FPSCamera.GetComponent<Camera>().enabled = false;
+                playerSetUp.miniMapMarker.GetComponent<SpriteRenderer>().color = new Color(255f, 0f, 0f);   //©‹@‚Ìƒ}[ƒJ[‚ğÔ‚É‚·‚é
+                playerSetUp.playerNameText.text = "NPC";
+
+                PlayerStatus playerStatus = npc.GetComponent<PlayerStatus>();
+                playerStatus.shotLv_voltex = Random.Range(0,3);
+                playerStatus.shotLv_circle = Random.Range(0, 3);
+                playerStatus.shotLv_random = Random.Range(0, 3);
+                playerStatus.hpBar.fillAmount = playerStatus.nowHP / playerStatus.maxHP;
+
+                npc.transform.parent = npcParent.transform;
+            }
+
         }
 
         statusObjects[0].GetComponent<TextMeshProUGUI>().text = "SCORE : " + PhotonNetwork.LocalPlayer.GetScore().ToString();
