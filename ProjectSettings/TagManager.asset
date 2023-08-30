@@ -48,6 +48,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Pillar
+    uniqueID: 3550027745
+    locked: 0
   - name: "\u5F53\u305F\u308A\u5224\u5B9A"
     uniqueID: 2094449471
     locked: 0

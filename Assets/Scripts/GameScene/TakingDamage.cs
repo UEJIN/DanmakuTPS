@@ -48,7 +48,7 @@ public class TakingDamage : MonoBehaviourPunCallbacks
             {
                 timeCount = 0;
                 //Debug.Log("重病経過");
-                this.gameObject.GetComponent<PhotonView>().RPC("TakeDamage", RpcTarget.All, 5f, PhotonNetwork.LocalPlayer.ActorNumber);
+                this.gameObject.GetComponent<PhotonView>().RPC("TakeDamage", RpcTarget.All, 5f, 0); //NPCからのダメージとして処理
             }
         }
     }
@@ -98,13 +98,13 @@ public class TakingDamage : MonoBehaviourPunCallbacks
                             player.Get(attackerID).AddScore(50); //攻撃した人にスコア
                             player.Get(attackerID).AddKillCount(1); //攻撃した人にキル+1
 
-                            if(player.Get(attackerID).GetNowHP() + 50 > 100) //HP50足して100超えるなら
+                            if(player.Get(attackerID).GetNowHP() + 25 > 100) //HP25足して100超えるなら
                             {
                                 player.Get(attackerID).SetNowHP(100); //100にする
                             }
                             else
                             {
-                                player.Get(attackerID).AddNowHP(50);　//50回復
+                                player.Get(attackerID).AddNowHP(25);　//25回復
                             }
                         }
 

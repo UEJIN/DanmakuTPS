@@ -14,6 +14,9 @@ public class MovementController : MonoBehaviour
     private VariableJoystick variableJoystick;
     private ButtonState buttonState;
 
+    public Animator animator;
+    private Vector2 direction;
+
     // ゲームのスタート時の処理
     void Start()
     {
@@ -22,8 +25,10 @@ public class MovementController : MonoBehaviour
 
         variableJoystick = GameObject.Find("Variable Joystick").GetComponent<VariableJoystick>();
         buttonState = GameObject.Find("SlowButton").GetComponent<ButtonState>();
-        
 
+        //アニメーションの初期値
+        animator.SetFloat("x", 0);
+        animator.SetFloat("y", -1);
 
     }
 
@@ -36,17 +41,18 @@ public class MovementController : MonoBehaviour
         float y = Input.GetAxisRaw("Vertical")+ variableJoystick.Vertical;
         // 移動する向きを求める
         // x と y の入力値を正規化して direction に渡す
-        Vector2 direction = new Vector2(x, y).normalized;
+        direction = new Vector2(x, y).normalized;
         // 移動する向きとスピードを代入する
         // Rigidbody2D コンポーネントの velocity に方向と移動速度を掛けた値を渡す
         //rb.velocity = direction * speed;
         velocity = direction * speed;
 
+        //左シフトか低速ボタンが押されていたら
         if (buttonState.IsPressed() || Input.GetKey(KeyCode.LeftShift))
         {
             speed = slowSpeed;
         }
-        else
+        else　//そうでなければ
         {
             speed = 5;
         }
@@ -59,5 +65,14 @@ public class MovementController : MonoBehaviour
         {
             rb.MovePosition(rb.position + velocity * Time.fixedDeltaTime); //MovePositionメソッドを呼び、移動させる値を渡す
         }
+
+        if (direction != Vector2.zero)
+        {
+            // 入力されている場合はアニメーターに方向を設定
+            animator.SetFloat("x", direction.x);
+            animator.SetFloat("y", direction.y);
+        }
+
     }
+
 }
