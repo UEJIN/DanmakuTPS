@@ -155,7 +155,8 @@ public class TakingDamage : MonoBehaviourPunCallbacks
         {
  
             int i = 0;
-            while (i < PhotonNetwork.LocalPlayer.GetShotLv_voltex()) //0‚É‚È‚é‚Ü‚ÅŒJ‚è•Ô‚·
+            //while (i < PhotonNetwork.LocalPlayer.GetShotLv_voltex()) //0‚É‚È‚é‚Ü‚ÅŒJ‚è•Ô‚·
+            while (i < this.gameObject.GetComponent<PlayerStatus>().shotLv_circle) //0‚É‚È‚é‚Ü‚ÅŒJ‚è•Ô‚·
             {
                 GameObject itemObj = PhotonNetwork.Instantiate("Item", new Vector2(transform.localPosition.x + CircleHorizon(1f, 2.0f).x, transform.localPosition.y + CircleHorizon(1f, 2.0f).y), Quaternion.identity);
                 ItemManager itemManager = itemObj.GetComponent<ItemManager>();
@@ -166,8 +167,8 @@ public class TakingDamage : MonoBehaviourPunCallbacks
             }
 
             i = 0;
-
-            while (i < PhotonNetwork.LocalPlayer.GetShotLv_circle()) //0‚É‚È‚é‚Ü‚ÅŒJ‚è•Ô‚·
+            //while (i < PhotonNetwork.LocalPlayer.GetShotLv_circle()) //0‚É‚È‚é‚Ü‚ÅŒJ‚è•Ô‚·
+            while (i < this.gameObject.GetComponent<PlayerStatus>().shotLv_voltex) //0‚É‚È‚é‚Ü‚ÅŒJ‚è•Ô‚·
             {
                 GameObject itemObj = PhotonNetwork.Instantiate("Item", new Vector2(transform.localPosition.x + CircleHorizon(1f, 2.0f).x, transform.localPosition.y + CircleHorizon(1f, 2.0f).y), Quaternion.identity);
                 ItemManager itemManager = itemObj.GetComponent<ItemManager>();
@@ -177,8 +178,8 @@ public class TakingDamage : MonoBehaviourPunCallbacks
             }
 
             i = 0;
-
-            while (i < PhotonNetwork.LocalPlayer.GetShotLv_random()) //0‚É‚È‚é‚Ü‚ÅŒJ‚è•Ô‚·
+            //while (i < PhotonNetwork.LocalPlayer.GetShotLv_random()) //0‚É‚È‚é‚Ü‚ÅŒJ‚è•Ô‚·
+            while (i < this.gameObject.GetComponent<PlayerStatus>().shotLv_random) //0‚É‚È‚é‚Ü‚ÅŒJ‚è•Ô‚·
             {
                 GameObject itemObj = PhotonNetwork.Instantiate("Item", new Vector2(transform.localPosition.x + CircleHorizon(1f, 2.0f).x, transform.localPosition.y + CircleHorizon(1f, 2.0f).y), Quaternion.identity);
                 ItemManager itemManager = itemObj.GetComponent<ItemManager>();

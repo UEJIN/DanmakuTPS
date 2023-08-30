@@ -325,7 +325,7 @@ public class Shoot : MonoBehaviourPunCallbacks
         if (this.gameObject.GetComponent<PhotonView>().IsMine && this.gameObject.tag == "Player")
         {
             //©•ª‚ÌUŒ‚‚ÌF‚ğ•Ï‚¦‚é
-            createObject.GetComponent<SpriteRenderer>().color = new Color(107, 162, 255);
+            createObject.GetComponent<SpriteRenderer>().color = new Color32(107, 162, 255, 120);
             ShootEffect();
         }
     }

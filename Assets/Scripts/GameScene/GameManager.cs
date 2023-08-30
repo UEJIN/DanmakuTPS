@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviourPunCallbacks //Photon view‚âPun‚ğg—p‚·‚
             }
 
             //ƒvƒŒƒCƒ„[”‚ª‚TˆÈ‰º‚È‚çNPCƒXƒ|[ƒ“
-            if(npcParent.transform.childCount + PhotonNetwork.PlayerList.Length < 10)
+            if(npcParent.transform.childCount + PhotonNetwork.PlayerList.Length < 5)
             {
                 GameObject npc = PhotonNetwork.InstantiateRoomObject(playerPrefab.name, new Vector2(Random.Range(-20, 20), Random.Range(-20, 20)), Quaternion.identity);
                 npc.tag = "Enemy";
@@ -58,9 +58,9 @@ public class GameManager : MonoBehaviourPunCallbacks //Photon view‚âPun‚ğg—p‚·‚
                 playerSetUp.playerNameText.text = "NPC";
 
                 PlayerStatus playerStatus = npc.GetComponent<PlayerStatus>();
-                playerStatus.shotLv_voltex = Random.Range(0,3);
-                playerStatus.shotLv_circle = Random.Range(0, 3);
-                playerStatus.shotLv_random = Random.Range(0, 3);
+                playerStatus.shotLv_voltex = Random.Range(0, 2);
+                playerStatus.shotLv_circle = Random.Range(0, 2);
+                playerStatus.shotLv_random = Random.Range(0, 2);
                 playerStatus.hpBar.fillAmount = playerStatus.nowHP / playerStatus.maxHP;
 
                 npc.transform.parent = npcParent.transform;
