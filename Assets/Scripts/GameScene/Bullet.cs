@@ -11,7 +11,11 @@ public class Bullet : MonoBehaviourPunCallbacks
     Vector3 velocity; // 移動量
     [SerializeField] int ownerID;
 
-    
+    [SerializeField] float spriteAngle; // 画像の初期角度
+    [SerializeField] float damage; // 角度
+    [SerializeField] float default_speed; // 速度
+    [SerializeField] float lifeTime = 5f; // 消えるまでの秒数
+
     //いずれ弾に所有者の情報を持たせて同期は切りたい（プレイヤーのみ同期する。）
 
     void Start()
@@ -24,10 +28,10 @@ public class Bullet : MonoBehaviourPunCallbacks
 
         // 弾の向きを設定する
         float zAngle = Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg - 90.0f;
-        transform.rotation = Quaternion.Euler(0, 0, zAngle);
+        transform.rotation = Quaternion.Euler(0, 0, zAngle+ spriteAngle);
 
         // 5秒後に削除
-        Destroy(gameObject, 5.0f);
+        Destroy(gameObject, lifeTime);
 
     }
     void Update()
@@ -41,14 +45,14 @@ public class Bullet : MonoBehaviourPunCallbacks
     public void Init(float input_angle, float input_speed, int input_ownerID)
     {
         angle = input_angle;
-        speed = input_speed;
+        speed = default_speed + input_speed;
         ownerID = input_ownerID;
     }
 
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("other：" + other);
+        //Debug.Log("other：" + other);
 
         //壁に当たると消える
         if (other.gameObject.CompareTag("Wall"))
@@ -59,12 +63,11 @@ public class Bullet : MonoBehaviourPunCallbacks
         //相手の球が
         if (PhotonNetwork.LocalPlayer.ActorNumber != ownerID)　
         {
-            if (other.gameObject.CompareTag("Player") && other.gameObject.GetComponent<PhotonView>().IsMine)
             //衝突したオブジェクトにPlayerタグ付けがあり、なおかつそれが自分のプレイヤーの場合
+            if (other.gameObject.CompareTag("Player") && other.gameObject.GetComponent<PhotonView>().IsMine)
             {
-                //RPCを介して、自分のオブジェクトのメソッドを呼ぶ（10fというfloat値を渡す）
-                //other.gameObject.GetComponent<PhotonView>().RPC("TakeDamage", RpcTarget.AllBuffered, 10f, ownerID);
-                other.gameObject.GetComponent<PhotonView>().RPC("TakeDamage", RpcTarget.All, 10f, ownerID);
+                //RPCを介して、自分のオブジェクトのメソッドを呼ぶ
+                other.gameObject.GetComponent<PhotonView>().RPC("TakeDamage", RpcTarget.All, damage, ownerID);
 
                 Debug.Log("被弾の所有者："+ ownerID);
 
@@ -74,7 +77,7 @@ public class Bullet : MonoBehaviourPunCallbacks
         //NPC以外のたまがNPCに当たると
         if (ownerID != 0 && other.gameObject.CompareTag("Enemy"))
         {
-            other.gameObject.GetComponent<PhotonView>().RPC("TakeDamage", RpcTarget.All, 10f, ownerID);
+            other.gameObject.GetComponent<PhotonView>().RPC("TakeDamage", RpcTarget.All, damage, ownerID);
             //Destroy(this.gameObject);
         }
 

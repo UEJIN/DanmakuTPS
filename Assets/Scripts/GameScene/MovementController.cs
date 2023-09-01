@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun; //Photonサーバーの情報を使用するため
+using Photon.Realtime;
 
-public class MovementController : MonoBehaviour
+public class MovementController : MonoBehaviourPunCallbacks
 {
     // Rigidbody2D コンポーネントを格納する変数
     private Rigidbody2D rb;
@@ -61,18 +63,52 @@ public class MovementController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (velocity != Vector2.zero) //velocityに入力値があれば
+        //自プレイヤーなら
+        if (photonView.IsMine && this.gameObject.tag == "Player")
         {
-            rb.MovePosition(rb.position + velocity * Time.fixedDeltaTime); //MovePositionメソッドを呼び、移動させる値を渡す
+            if (velocity != Vector2.zero) //velocityに入力値があれば
+            {
+                rb.MovePosition(rb.position + velocity * Time.fixedDeltaTime); //MovePositionメソッドを呼び、移動させる値を渡す
+            }
+
+            if (direction != Vector2.zero)
+            {
+                // 入力されている場合はアニメーターに方向を設定
+                animator.SetFloat("x", direction.x);
+                animator.SetFloat("y", direction.y);
+            }
         }
 
-        if (direction != Vector2.zero)
+        //NPCなら
+        if (this.CompareTag("Enemy"))
         {
-            // 入力されている場合はアニメーターに方向を設定
-            animator.SetFloat("x", direction.x);
-            animator.SetFloat("y", direction.y);
+            float distance = 0.01f;
+            //一番近いプレイヤーに寄ってくる
+            gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, FetchNearObjectWithTag("Player").position, distance);
         }
 
     }
 
+    // １番近いオブジェクトを取得する
+    // (プレイヤーのMonoBehaviourにアタッチされている前提)
+    private Transform FetchNearObjectWithTag(string tagName)
+    {
+        // 該当タグが1つしか無い場合はそれを返す
+        var targets = GameObject.FindGameObjectsWithTag(tagName);
+        if (targets.Length == 1) return targets[0].transform;
+
+        GameObject result = null;
+        var minTargetDistance = float.MaxValue;
+        foreach (var target in targets)
+        {
+            // 前回計測したオブジェクトよりも近くにあれば記録
+            var targetDistance = Vector3.Distance(transform.position, target.transform.position);
+            if (!(targetDistance < minTargetDistance)) continue;
+            minTargetDistance = targetDistance;
+            result = target.transform.gameObject;
+        }
+
+        // 最後に記録されたオブジェクトを返す
+        return result?.transform;
+    }
 }

@@ -28,7 +28,7 @@ public class PlayerSetUp : MonoBehaviourPunCallbacks
         }
         else
         {
-            transform.GetComponent<MovementController>().enabled = false;
+            //transform.GetComponent<MovementController>().enabled = false;
             FPSCamera.GetComponent<Camera>().enabled = false;
             //transform.GetComponent<PlayerStatus>().enabled = false; //
         }

@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviourPunCallbacks //Photon view‚âPun‚ğg—p‚·‚
                 npc.tag = "Enemy";
 
                 PlayerSetUp playerSetUp = npc.GetComponent<PlayerSetUp>();
-                playerSetUp.transform.GetComponent<MovementController>().enabled = false;
+                //playerSetUp.transform.GetComponent<MovementController>().enabled = false;
                 playerSetUp.FPSCamera.GetComponent<Camera>().enabled = false;
                 playerSetUp.miniMapMarker.GetComponent<SpriteRenderer>().color = new Color(255f, 0f, 0f);   //©‹@‚Ìƒ}[ƒJ[‚ğÔ‚É‚·‚é
                 playerSetUp.playerNameText.text = "NPC";
@@ -61,6 +61,7 @@ public class GameManager : MonoBehaviourPunCallbacks //Photon view‚âPun‚ğg—p‚·‚
                 playerStatus.shotLv_voltex = Random.Range(0, 2);
                 playerStatus.shotLv_circle = Random.Range(0, 2);
                 playerStatus.shotLv_random = Random.Range(0, 2);
+                playerStatus.shotLv_aim = Random.Range(0, 2);
                 playerStatus.hpBar.fillAmount = playerStatus.nowHP / playerStatus.maxHP;
 
                 npc.transform.parent = npcParent.transform;

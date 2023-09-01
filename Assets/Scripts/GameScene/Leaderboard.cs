@@ -6,7 +6,8 @@ using UnityEngine;
 
 public class Leaderboard : MonoBehaviour
 {
-
+    [SerializeField]
+    private TextMeshProUGUI roomNameText;
     [SerializeField] 
     private TextMeshProUGUI label_Score= default;
     [SerializeField]
@@ -21,6 +22,8 @@ public class Leaderboard : MonoBehaviour
         builder_Name = new StringBuilder();
         builder_Score = new StringBuilder();
         elapsedTime = 0f;
+        roomNameText.text = PhotonNetwork.CurrentRoom.Name;
+
     }
 
     private void Update()
@@ -39,7 +42,10 @@ public class Leaderboard : MonoBehaviour
 
     private void UpdateLabel()
     {
+        //プレイヤーリスト取得
         var players = PhotonNetwork.PlayerList;
+        
+        //ソート
         Array.Sort(
             players,
             (p1, p2) =>
@@ -55,24 +61,25 @@ public class Leaderboard : MonoBehaviour
             }
         );
 
+        //初期化
         builder_Name.Clear();
         builder_Score.Clear();
 
+        //スコアリストを開業して一つのテキストに
         foreach (var player in players)
         {
             //builder_Name.AppendLine($"{player.NickName}({player.ActorNumber}) - ");
             builder_Score.AppendLine($"{player.GetScore()}");
         }
+        label_Score.text = builder_Score.ToString();
 
+        //プレイヤー名のテキストボックスに順番に入れていく
         for(int i = 0; i<players.Length && i<=10; ++i)
         {
             gameObjects[i].GetComponent<TextMeshProUGUI>().text = players[i].NickName;
         }
-
-
-
         //label_Name.text = builder_Name.ToString();
-        label_Score.text = builder_Score.ToString();
+
 
     }
 }

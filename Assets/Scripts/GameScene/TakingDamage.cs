@@ -205,10 +205,10 @@ public class TakingDamage : MonoBehaviourPunCallbacks
         float respawnTime = 5.0f;
         while (respawnTime > 0F) //0になるまで繰り返す
         {
-            yield return new WaitForSeconds(1f);
-            respawnTime -= 1.0f;
             transform.GetComponent<MovementController>().enabled = false; //動けない状態
             transform.GetComponent<Shoot>().enabled = false; //撃てない状態
+            yield return new WaitForSeconds(1f);
+            respawnTime -= 1.0f;
             respawnText.GetComponent<TextMeshProUGUI>().text = "Respawning at: " + respawnTime.ToString();
         }
         killText.GetComponent<TextMeshProUGUI>().text = "";
@@ -227,13 +227,12 @@ public class TakingDamage : MonoBehaviourPunCallbacks
         //hp = startHp; //回復
         //hpBar.fillAmount = hp / startHp; //HPBarに反映
         if (photonView.IsMine) //自分で読んだら
-        {
-            
-            
+        {   
             //ステータスリセット
             PhotonNetwork.LocalPlayer.AddShotLv_voltex(- PhotonNetwork.LocalPlayer.GetShotLv_voltex());
             PhotonNetwork.LocalPlayer.AddShotLv_circle(- PhotonNetwork.LocalPlayer.GetShotLv_circle());
             PhotonNetwork.LocalPlayer.AddShotLv_random(- PhotonNetwork.LocalPlayer.GetShotLv_random());
+            PhotonNetwork.LocalPlayer.AddShotLv_aim(-PhotonNetwork.LocalPlayer.GetShotLv_aim());
             PhotonNetwork.LocalPlayer.AddKillCount(-PhotonNetwork.LocalPlayer.GetKillCount());
             PhotonNetwork.LocalPlayer.SetNowHP(startHp);
             PhotonNetwork.LocalPlayer.SetScore(0);
@@ -241,6 +240,7 @@ public class TakingDamage : MonoBehaviourPunCallbacks
         deadText.SetActive(false); //死亡非表示
     }
 
+    //半径minから半径maxの円内のランダムな位置を取得
     public Vector3 CircleHorizon(float min, float max)
     {
 

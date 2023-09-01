@@ -9,6 +9,7 @@ public static class PlayerPropertiesExtensions
     private const string shotLv_voltex_Key = "s_v";
     private const string shotLv_circle_Key = "s_c";
     private const string shotLv_random_Key = "s_r";
+    private const string shotLv_aim_Key = "s_a";
 
     private const string nowHP_Key = "n_h";
     private const string killCount_Key = "k";
@@ -45,6 +46,12 @@ public static class PlayerPropertiesExtensions
     public static int GetShotLv_random(this Player player)
     {
         return (player.CustomProperties[shotLv_random_Key] is int shotLv_random) ? shotLv_random : 0;
+    }
+
+    // プレイヤーのShotLv_voltexを取得する
+    public static int GetShotLv_aim(this Player player)
+    {
+        return (player.CustomProperties[shotLv_aim_Key] is int shotLv_aim) ? shotLv_aim : 0;
     }
 
     // プレイヤーのShotLv_voltexを取得する
@@ -97,6 +104,14 @@ public static class PlayerPropertiesExtensions
     public static void AddShotLv_random(this Player player, int addShotLv_random)
     {
         propsToSet[shotLv_random_Key] = player.GetShotLv_random() + addShotLv_random;
+        player.SetCustomProperties(propsToSet);
+        propsToSet.Clear();
+    }
+
+    // プレイヤーのスコアを追加して設定する
+    public static void AddShotLv_aim(this Player player, int addShotLv_aim)
+    {
+        propsToSet[shotLv_aim_Key] = player.GetShotLv_aim() + addShotLv_aim;
         player.SetCustomProperties(propsToSet);
         propsToSet.Clear();
     }

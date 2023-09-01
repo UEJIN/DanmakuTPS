@@ -12,6 +12,8 @@ public class PlayerStatus : MonoBehaviourPunCallbacks //, IPunOwnershipCallbacks
     public int shotLv_voltex;//サーバーの値が変更されたらここを更新して保持しておく
     public int shotLv_circle;
     public int shotLv_random;
+    public int shotLv_aim;
+
     AudioSource itemGetSound; //AudioSourceを宣言
     public float nowHP;
     public float maxHP;
@@ -24,6 +26,7 @@ public class PlayerStatus : MonoBehaviourPunCallbacks //, IPunOwnershipCallbacks
         shotLv_voltex = photonView.Owner.GetShotLv_voltex();
         shotLv_circle = photonView.Owner.GetShotLv_circle();
         shotLv_random = photonView.Owner.GetShotLv_random();
+        shotLv_aim = photonView.Owner.GetShotLv_aim();
         nowHP = photonView.Owner.GetNowHP();
         maxHP = 100f;
         hpBar.fillAmount = nowHP / maxHP;
@@ -94,6 +97,11 @@ public class PlayerStatus : MonoBehaviourPunCallbacks //, IPunOwnershipCallbacks
                     {
                         PhotonNetwork.LocalPlayer.AddShotLv_random(1);
                     }
+                    if (name == collision.GetComponent<ItemManager>().sprites[4].name)
+                    {
+                        PhotonNetwork.LocalPlayer.AddShotLv_aim(1);
+                    }
+
                 }
 
                 Destroy(collision.gameObject);      //Item削除
@@ -134,6 +142,9 @@ public class PlayerStatus : MonoBehaviourPunCallbacks //, IPunOwnershipCallbacks
                             break;
                         case "s_r":
                             shotLv_random = targetPlayer.GetShotLv_random();
+                            break;
+                        case "s_a":
+                            shotLv_aim = targetPlayer.GetShotLv_aim();
                             break;
                         case "n_h":
                             nowHP = targetPlayer.GetNowHP();

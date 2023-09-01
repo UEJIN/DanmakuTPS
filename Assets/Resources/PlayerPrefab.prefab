@@ -797,6 +797,10 @@ MonoBehaviour:
   shotBullet: {fileID: 1273474431921532874, guid: 0fe67501bc85fb945819aa74df44bcae, type: 3}
   ownerID: 0
   bullet_offline_prefab: {fileID: 7941306476910075066, guid: b33cd58421f05aa489dac4827ddf6590, type: 3}
+  bullet_bolt_prefab: {fileID: 7941306476910075066, guid: 32219e5c338dc9d4bafc1a5e89a5beb8, type: 3}
+  bullet_aim_prefab: {fileID: 7941306476910075066, guid: 305d7526fc9e82443a7bbee3cfc57f87, type: 3}
+  shot_voltex_speed: 2
+  shot_aim_speed: 4
 --- !u!114 &3199360917201111883
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -812,6 +816,7 @@ MonoBehaviour:
   shotLv_voltex: 0
   shotLv_circle: 0
   shotLv_random: 0
+  shotLv_aim: 0
   nowHP: 0
   maxHP: 0
   hpBar: {fileID: 1922944663}
@@ -1239,8 +1244,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1206949493
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 0.24696936, b: 0, a: 1}
