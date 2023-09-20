@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviourPunCallbacks //Photon view‚âPun‚ğg—p‚·‚
     [SerializeField] GameObject playerPrefab;
     //GameObject itemObj;
     [SerializeField] public GameObject itemParent;
+    [SerializeField] public GameObject ultItemParent;
     [SerializeField] TextMeshProUGUI timerText;
     [SerializeField] public GameObject[] statusObjects;
     [SerializeField] public GameObject killCountObject;
@@ -45,8 +46,17 @@ public class GameManager : MonoBehaviourPunCallbacks //Photon view‚âPun‚ğg—p‚·‚
                 itemObj.transform.parent = itemParent.transform;
             }
 
+            //ƒtƒB[ƒ‹ƒh‚ÌUltƒAƒCƒeƒ€‚ª2‚±ˆÈ‰º‚È‚çƒ‰ƒ“ƒ_ƒ€ƒXƒ|[ƒ“
+            if (ultItemParent.transform.childCount < 2)
+            {
+                GameObject itemObj = PhotonNetwork.Instantiate("UltItem", new Vector2(Random.Range(-20, 20), Random.Range(-20, 20)), Quaternion.identity);
+                ItemManager itemManager = itemObj.GetComponent<ItemManager>();
+                itemManager.Init(Random.Range(1, itemManager.ultSprites.Length));
+                itemObj.transform.parent = ultItemParent.transform;
+            }
+
             //ƒvƒŒƒCƒ„[”‚ª‚TˆÈ‰º‚È‚çNPCƒXƒ|[ƒ“
-            if(npcParent.transform.childCount + PhotonNetwork.PlayerList.Length < 5)
+            if (npcParent.transform.childCount + PhotonNetwork.PlayerList.Length < 5)
             {
                 GameObject npc = PhotonNetwork.InstantiateRoomObject(playerPrefab.name, new Vector2(Random.Range(-20, 20), Random.Range(-20, 20)), Quaternion.identity);
                 npc.tag = "Enemy";
@@ -62,6 +72,7 @@ public class GameManager : MonoBehaviourPunCallbacks //Photon view‚âPun‚ğg—p‚·‚
                 playerStatus.shotLv_circle = Random.Range(0, 2);
                 playerStatus.shotLv_random = Random.Range(0, 2);
                 playerStatus.shotLv_aim = Random.Range(0, 2);
+                playerStatus.UltID = Random.Range(0, 3);
                 playerStatus.hpBar.fillAmount = playerStatus.nowHP / playerStatus.maxHP;
 
                 npc.transform.parent = npcParent.transform;
@@ -69,6 +80,7 @@ public class GameManager : MonoBehaviourPunCallbacks //Photon view‚âPun‚ğg—p‚·‚
 
         }
 
+        //©•ª‚ÌƒXƒe[ƒ^ƒX•\¦
         statusObjects[0].GetComponent<TextMeshProUGUI>().text = "SCORE : " + PhotonNetwork.LocalPlayer.GetScore().ToString();
         statusObjects[1].GetComponent<TextMeshProUGUI>().text = "CIRCLE Shot Lv "+PhotonNetwork.LocalPlayer.GetShotLv_circle().ToString();
         statusObjects[2].GetComponent<TextMeshProUGUI>().text = "VOLTEX Shot Lv "+PhotonNetwork.LocalPlayer.GetShotLv_voltex().ToString();

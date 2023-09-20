@@ -10,6 +10,7 @@ public static class PlayerPropertiesExtensions
     private const string shotLv_circle_Key = "s_c";
     private const string shotLv_random_Key = "s_r";
     private const string shotLv_aim_Key = "s_a";
+    private const string UltID_Key = "u";
 
     private const string nowHP_Key = "n_h";
     private const string killCount_Key = "k";
@@ -54,18 +55,26 @@ public static class PlayerPropertiesExtensions
         return (player.CustomProperties[shotLv_aim_Key] is int shotLv_aim) ? shotLv_aim : 0;
     }
 
-    // プレイヤーのShotLv_voltexを取得する
+    // プレイヤーのUltIDを取得する
+    public static int GetUltID(this Player player)
+    {
+        return (player.CustomProperties[UltID_Key] is int ultID) ? ultID : 0;
+    }
+
+    // プレイヤーのNowHPを取得する
     public static float GetNowHP(this Player player)
     {
         return (player.CustomProperties[nowHP_Key] is float nowHP) ? nowHP : 100;
     }
 
-    // プレイヤーのShotLv_voltexを取得する
+    // プレイヤーのKillCountを取得する
     public static int GetKillCount(this Player player)
     {
         return (player.CustomProperties[killCount_Key] is int killCount) ? killCount : 0;
     }
     #endregion
+
+    //-------------------------------------------------------------------------------------------------
 
     #region SetStatus
     // プレイヤーのスコアを設定する
@@ -112,6 +121,14 @@ public static class PlayerPropertiesExtensions
     public static void AddShotLv_aim(this Player player, int addShotLv_aim)
     {
         propsToSet[shotLv_aim_Key] = player.GetShotLv_aim() + addShotLv_aim;
+        player.SetCustomProperties(propsToSet);
+        propsToSet.Clear();
+    }
+
+    // プレイヤーのUltIDを設定する
+    public static void SetUltID(this Player player, int setUltID)
+    {
+        propsToSet[UltID_Key] = setUltID;
         player.SetCustomProperties(propsToSet);
         propsToSet.Clear();
     }

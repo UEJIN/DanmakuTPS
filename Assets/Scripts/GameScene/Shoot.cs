@@ -10,6 +10,8 @@ public class Shoot : MonoBehaviourPunCallbacks
     float shotAngle = 0; // 発射角度
     [SerializeField] GameObject shotBullet; // 発射する弾
     AudioSource shootSound; //AudioSourceを宣言
+    AudioSource beamSound; //AudioSourceを宣言
+
     float timeCount_circle = 0;
     float timeCount_voltex = 0;
     float timeCount_random = 0;
@@ -18,6 +20,7 @@ public class Shoot : MonoBehaviourPunCallbacks
     [SerializeField] GameObject bullet_offline_prefab;
     [SerializeField] GameObject bullet_bolt_prefab;
     [SerializeField] GameObject bullet_aim_prefab;
+    [SerializeField] GameObject bullet_laser_prefab;
     [SerializeField] float shot_voltex_speed = 2;
     [SerializeField] float shot_aim_speed = 4;
 
@@ -28,13 +31,13 @@ public class Shoot : MonoBehaviourPunCallbacks
     void Awake()
     {
         shootSound = GameObject.Find("ShotSound").GetComponent<AudioSource>(); //シーンにあるオブジェクトを探し、コンポーネントを取得
-
+        beamSound = GameObject.Find("BeamSound").GetComponent<AudioSource>(); //シーンにあるオブジェクトを探し、コンポーネントを取得
     }
 
     void Start()
     {
         //玉の所有者のIDを設定する
-        if (this.gameObject.tag == "Player")
+        if (this.gameObject.CompareTag("Player"))
         {
             ownerID = photonView.Owner.ActorNumber;
         }
@@ -45,6 +48,9 @@ public class Shoot : MonoBehaviourPunCallbacks
         Debug.Log("shoot owner ID = " + ownerID);
 
         previousPos = transform.position;
+        StartCoroutine(Circle2());
+        StartCoroutine(Voltex2());
+        StartCoroutine(Laser());
     }
 
     private void FixedUpdate()
@@ -58,7 +64,7 @@ public class Shoot : MonoBehaviourPunCallbacks
         }
         else
         {
-            angle = Random.Range(0f,180f);
+            angle = Random.Range(0f,360f);
         }
         previousPos = transform.position;
 
@@ -76,10 +82,6 @@ public class Shoot : MonoBehaviourPunCallbacks
         timeCount_circle += Time.deltaTime;
         timeCount_random += Time.deltaTime;
         timeCount_aim += Time.deltaTime;
-
-        //Debug.Log("shotLv_voltex=" + transform.GetComponent<PlayerStatus>().shotLv_voltex);
-        //Debug.Log("shotLv_circle=" + transform.GetComponent<PlayerStatus>().shotLv_circle);
-        //Debug.Log("shotLv_random=" + transform.GetComponent<PlayerStatus>().shotLv_random);
 
         //円形
         if (transform.GetComponent<PlayerStatus>().shotLv_circle > 0)
@@ -119,7 +121,7 @@ public class Shoot : MonoBehaviourPunCallbacks
                 case 3:
                     if (timeCount_circle > 1f)
                     {
-                        timeCount_circle = 0; 
+                        timeCount_circle = 0;
                         InstBullet(0, transform.position, 3);
                         InstBullet(90, transform.position, 3);
                         InstBullet(180, transform.position, 3);
@@ -138,7 +140,7 @@ public class Shoot : MonoBehaviourPunCallbacks
                 case 4:
                     if (timeCount_circle > 1f)
                     {
-                        timeCount_circle = 0; 
+                        timeCount_circle = 0;
                         InstBullet(0, transform.position, 3);
                         InstBullet(90, transform.position, 3);
                         InstBullet(180, transform.position, 3);
@@ -161,7 +163,7 @@ public class Shoot : MonoBehaviourPunCallbacks
                 default:
                     if (timeCount_circle > 1f)
                     {
-                        timeCount_circle = 0; 
+                        timeCount_circle = 0;
                         InstBullet(0, transform.position, 3);
                         InstBullet(90, transform.position, 3);
                         InstBullet(180, transform.position, 3);
@@ -326,6 +328,7 @@ public class Shoot : MonoBehaviourPunCallbacks
             //float shot_aim_speed = 4;
             bulletPrefab = bullet_aim_prefab;
 
+            //レベル上がるたびにクールタイムダウン
             if (timeCount_aim > 1f - 0.05f * transform.GetComponent<PlayerStatus>().shotLv_aim)
             {
                 timeCount_aim = 0;
@@ -357,7 +360,155 @@ public class Shoot : MonoBehaviourPunCallbacks
             //}
         }
 
+
+
+
     }
+
+    //Ult用の攻撃-----------------------------------------------------
+    //一種類だけ持てる。
+    //ボタン押したら発動してクールタイムつける。（未実装。RPCでやる感じ？現状は通常攻撃と同様の処理）
+
+    //高密度円形
+    IEnumerator Circle2()
+    {
+        while (true)
+        {
+            int UltID = transform.GetComponent<PlayerStatus>().UltID;
+            //int Lv = Circle2;
+            if (UltID == 1)
+            {
+
+                int count = 0;
+                while (count < 5)
+                {
+                    for (int rad = 0; rad < 360; rad += 6)
+                    {
+                        bulletPrefab = bullet_offline_prefab;
+                        InstBullet(rad, transform.position, 3);
+                    }
+                    yield return new WaitForSeconds(2f);
+                    count++;
+                }
+
+                //クールタイム
+                yield return new WaitForSeconds(4f);
+
+            }
+            else
+            {
+                yield return null;
+            }
+        }
+    }
+    
+    //高密度渦巻き
+    IEnumerator Voltex2()
+    {
+        while (true)
+        {
+            int Lv = transform.GetComponent<PlayerStatus>().UltID;
+            //int Lv = 0;
+            if (Lv == 2)
+            {
+
+                int count = 0;
+                while (count < 5 + Lv) //なん往復するのか
+                {
+                    for (int rad = 0; rad < 360; rad += 6)
+                    {
+                        bulletPrefab = bullet_offline_prefab;
+                        InstBullet(rad, transform.position, 3);
+                        InstBullet(180 + rad, transform.position, 3);
+                        InstBullet(360- rad, transform.position, 3);
+                        InstBullet(180 - rad, transform.position, 3);
+                        yield return new WaitForSeconds(0.1f);
+                    }
+
+                    count++;
+                }
+                yield return new WaitForSeconds(4f);
+
+            }
+            else
+            {
+                yield return null;
+            }
+        }
+    }
+
+    //レーザー
+    IEnumerator Laser()
+    {
+        while (true)
+        {
+            int Lv = transform.GetComponent<PlayerStatus>().UltID;
+            //int Lv = 0;
+            if (Lv == 3)
+            {
+
+                //int count = 0;
+                //while (count < 5 + Lv) //なん往復するのか
+                //{
+                    for (int rad = 0; rad < 360; rad += 45)
+                    {
+                         bulletPrefab = bullet_laser_prefab;
+                        //bulletPrefab = bullet_offline_prefab;
+                        InstBullet(rad, transform.position, 1);
+                        InstBullet(90 + rad, transform.position, 1);
+                        InstBullet(270 + rad, transform.position, 1);
+                        InstBullet(180 + rad, transform.position, 1);
+                        beamSound.Play(); //銃声を再生
+                        yield return new WaitForSeconds(5f);
+                    }
+
+                //    count++;
+                //}
+                //yield return new WaitForSeconds(4f);
+
+            }
+            else
+            {
+                yield return null;
+            }
+        }
+    }
+
+    //バリア
+
+    IEnumerator Barrier()
+    {
+        while (true)
+        {
+            int Lv = transform.GetComponent<PlayerStatus>().UltID;
+            //int Lv = 0;
+            if (Lv == 4)
+            {
+
+                for (int rad = 0; rad < 360; rad += 45)
+                {
+                    bulletPrefab = bullet_laser_prefab;
+                    //bulletPrefab = bullet_offline_prefab;
+                    InstBullet(rad, transform.position, 1);
+                    InstBullet(90 + rad, transform.position, 1);
+                    InstBullet(270 + rad, transform.position, 1);
+                    InstBullet(180 + rad, transform.position, 1);
+                    beamSound.Play(); //銃声を再生
+                    yield return new WaitForSeconds(5f);
+                }
+
+                //    count++;
+                //}
+                //yield return new WaitForSeconds(4f);
+
+            }
+            else
+            {
+                yield return null;
+            }
+        }
+    }
+
 
     //private void InstBullet(float shotAngle, Vector3 offsetPos, float shotSpeed )
     //{
@@ -395,7 +546,10 @@ public class Shoot : MonoBehaviourPunCallbacks
         if (this.gameObject.GetComponent<PhotonView>().IsMine && this.gameObject.tag == "Player")
         {
             //自分の攻撃の色を変える
-            createObject.GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 120);
+            if (createObject.GetComponent<SpriteRenderer>() != null)
+            {
+                createObject.GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 120);
+            }
             ShootEffect();
         }
     }

@@ -80,7 +80,7 @@ public class TakingDamage : MonoBehaviourPunCallbacks
 
                     if (photonView.IsMine) //自分で読んだら
                     {
-                        if (this.gameObject.tag == "Player") //ダメージ食らうのが自プレイヤーなら
+                        if (this.gameObject.CompareTag("Player")) //ダメージ食らうのが自プレイヤーなら
                         {
                             PhotonNetwork.LocalPlayer.SetNowHP(0);
                             killText.GetComponent<TextMeshProUGUI>().text = "You were killed by " + info.Sender.NickName; //自分の画面にやられたことを表示
@@ -115,7 +115,7 @@ public class TakingDamage : MonoBehaviourPunCallbacks
                 {
                     damageSound.Play();
 
-                    if (this.gameObject.tag == "Player")
+                    if (this.gameObject.CompareTag("Player"))
                     {
                         if (photonView.IsMine) //自分で読んだら
                         {
@@ -158,38 +158,64 @@ public class TakingDamage : MonoBehaviourPunCallbacks
             //while (i < PhotonNetwork.LocalPlayer.GetShotLv_voltex()) //0になるまで繰り返す
             while (i < this.gameObject.GetComponent<PlayerStatus>().shotLv_circle) //0になるまで繰り返す
             {
-                GameObject itemObj = PhotonNetwork.Instantiate("Item", new Vector2(transform.localPosition.x + CircleHorizon(1f, 2.0f).x, transform.localPosition.y + CircleHorizon(1f, 2.0f).y), Quaternion.identity);
+                GameObject itemObj = PhotonNetwork.Instantiate("Item", new Vector2(transform.localPosition.x + CircleHorizon(1f, 5f).x, transform.localPosition.y + CircleHorizon(1f, 5f).y), Quaternion.identity);
                 ItemManager itemManager = itemObj.GetComponent<ItemManager>();
                 itemManager.Init(1);
 
                 //itemObj.transform.parent = GameManager.itemParent.transform;
                 i++;
+                if (i == 8)
+                {
+                    break;
+                }
             }
 
             i = 0;
             //while (i < PhotonNetwork.LocalPlayer.GetShotLv_circle()) //0になるまで繰り返す
             while (i < this.gameObject.GetComponent<PlayerStatus>().shotLv_voltex) //0になるまで繰り返す
             {
-                GameObject itemObj = PhotonNetwork.Instantiate("Item", new Vector2(transform.localPosition.x + CircleHorizon(1f, 2.0f).x, transform.localPosition.y + CircleHorizon(1f, 2.0f).y), Quaternion.identity);
+                GameObject itemObj = PhotonNetwork.Instantiate("Item", new Vector2(transform.localPosition.x + CircleHorizon(1f, 5f).x, transform.localPosition.y + CircleHorizon(1f, 5f).y), Quaternion.identity);
                 ItemManager itemManager = itemObj.GetComponent<ItemManager>();
                 itemManager.Init(2);
                 //itemObj.transform.parent = itemParent.transform;
                 i++;
+                if (i == 8)
+                {
+                    break;
+                }
             }
 
             i = 0;
             //while (i < PhotonNetwork.LocalPlayer.GetShotLv_random()) //0になるまで繰り返す
             while (i < this.gameObject.GetComponent<PlayerStatus>().shotLv_random) //0になるまで繰り返す
             {
-                GameObject itemObj = PhotonNetwork.Instantiate("Item", new Vector2(transform.localPosition.x + CircleHorizon(1f, 2.0f).x, transform.localPosition.y + CircleHorizon(1f, 2.0f).y), Quaternion.identity);
+                GameObject itemObj = PhotonNetwork.Instantiate("Item", new Vector2(transform.localPosition.x + CircleHorizon(1f, 5f).x, transform.localPosition.y + CircleHorizon(1f, 5f).y), Quaternion.identity);
                 ItemManager itemManager = itemObj.GetComponent<ItemManager>();
                 itemManager.Init(3);
                 //itemObj.transform.parent = itemParent.transform;
                 i++;
+                if (i == 8)
+                {
+                    break;
+                }
             }
+            
             i = 0;
+            while (i < this.gameObject.GetComponent<PlayerStatus>().shotLv_aim) //0になるまで繰り返す
+            {
+                GameObject itemObj = PhotonNetwork.Instantiate("Item", new Vector2(transform.localPosition.x + CircleHorizon(1f, 5f).x, transform.localPosition.y + CircleHorizon(1f, 5f).y), Quaternion.identity);
+                ItemManager itemManager = itemObj.GetComponent<ItemManager>();
+                itemManager.Init(4);
+                //itemObj.transform.parent = itemParent.transform;
+                i++;
+                if (i == 8)
+                {
+                    break;
+                }
+            }
+           
 
-            if (this.gameObject.tag == "Player")
+            if (this.gameObject.CompareTag("Player"))
             {
                 StartCoroutine(Respawn());
             }
@@ -233,6 +259,7 @@ public class TakingDamage : MonoBehaviourPunCallbacks
             PhotonNetwork.LocalPlayer.AddShotLv_circle(- PhotonNetwork.LocalPlayer.GetShotLv_circle());
             PhotonNetwork.LocalPlayer.AddShotLv_random(- PhotonNetwork.LocalPlayer.GetShotLv_random());
             PhotonNetwork.LocalPlayer.AddShotLv_aim(-PhotonNetwork.LocalPlayer.GetShotLv_aim());
+            PhotonNetwork.LocalPlayer.SetUltID(0);
             PhotonNetwork.LocalPlayer.AddKillCount(-PhotonNetwork.LocalPlayer.GetKillCount());
             PhotonNetwork.LocalPlayer.SetNowHP(startHp);
             PhotonNetwork.LocalPlayer.SetScore(0);

@@ -8,6 +8,7 @@ TagManager:
   - Item
   - Wall
   - Enemy
+  - UltItem
   layers:
   - Default
   - TransparentFX
@@ -16,7 +17,7 @@ TagManager:
   - Water
   - UI
   - DangerZone
-  - 
+  - PostProcess
   - 
   - 
   - 
@@ -47,6 +48,9 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Bullet
+    uniqueID: 1405077995
     locked: 0
   - name: Pillar
     uniqueID: 3550027745
